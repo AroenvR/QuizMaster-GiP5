@@ -11,3 +11,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#Login-Form-Div, #Sign-Up-Form-Div {
+  text-align: center;
+  margin-top: 2rem;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 20vw;
+}
+
+#Forgot-Password-Btn {
+  margin-top: 1rem;
+  color: black;
+}
+#Forgot-Password-Btn:hover {
+  color: grey;
+}
+
+#Style-Footer-Div {
+  background-color: #F8F8F8;
+  border-top: "1px solid #E7E7E7";
+  padding: "20px";
+  position: "fixed";
+  left: "0";
+  bottom: "0";
+  height: "60px";
+  width: "100%";
+
+  display: "flex";
+  justify-content: "flex-center";
+}
