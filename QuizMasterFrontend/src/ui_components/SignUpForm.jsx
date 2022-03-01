@@ -19,7 +19,6 @@ const LoginForm = () => {
         setValidated(true);
 
         //TODO: Send to Axios
-        //Testing push
     }
 
     return (

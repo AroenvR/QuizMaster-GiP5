@@ -21,23 +21,41 @@ code {
 }
 
 #Forgot-Password-Btn {
-  margin-top: 1rem;
   color: black;
 }
 #Forgot-Password-Btn:hover {
   color: grey;
 }
 
-#Style-Footer-Div {
-  background-color: #F8F8F8;
-  border-top: "1px solid #E7E7E7";
-  padding: "20px";
-  position: "fixed";
-  left: "0";
-  bottom: "0";
-  height: "60px";
-  width: "100%";
+.link-btn {
+  margin: 0px;
+  padding: 0px;
+  width: max-content;
+  align-self: center;
+}
+.forgot-password-link {
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.join-quiz-link, .host-quiz-link, .create-question-link {
+  margin-top: 1.5rem;
+}
 
-  display: "flex";
-  justify-content: "flex-center";
+#Home-Page-Div {
+  margin-top: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 20vw;
+}
+
+#Join-Page-Div {
+  margin-top: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 20vw;
+  text-align: center;
 }

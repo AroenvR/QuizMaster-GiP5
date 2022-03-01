@@ -49,13 +49,17 @@ const LoginForm = () => {
                     />
                     <Form.Control.Feedback type="invalid">Please fill in a password.</Form.Control.Feedback>
                 </Form.Group>
-
+                
                 <Button variant="primary" type="submit">
                     Log in
                 </Button>
+                
+                <Nav.Link className='link-btn forgot-password-link' href="/forgot-password">
+                    <Button id="Forgot-Password-Btn" variant="secondary">Forgot Password?</Button>
+                </Nav.Link>
             </Form>
 
-            <Nav.Link href="/forgot-password"><Button id="Forgot-Password-Btn" variant="secondary">Forgot Password?</Button></Nav.Link>
+            
             
         </div>
     )

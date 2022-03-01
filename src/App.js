@@ -6,8 +6,10 @@ import {
 import './App.css';
 
 import NavigationBar from "./ui_components/NavigationBar";
+import HomePage from "./ui_components/HomePage";
 import LoginForm from "./ui_components/LoginForm";
 import SignUpForm from "./ui_components/SignUpForm";
+import JoinQuizPage from "./ui_components/JoinQuizPage";
 import Footer from "./ui_components/Footer";
 
 function App() {
@@ -16,8 +18,10 @@ function App() {
       <NavigationBar />
 
       <Routes>
+        <Route path="/" element={<HomePage />}></Route>
         <Route path="/login" element={<LoginForm />}></Route>
         <Route path="/sign-up" element={<SignUpForm />}></Route>
+        <Route path="/join" element={<JoinQuizPage />}></Route>
       </Routes>
 
       <Footer />    

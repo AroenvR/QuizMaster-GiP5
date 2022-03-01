@@ -36,7 +36,7 @@ const NavigationBar = () => {
         <div id="Navigation-Bar-Div">
             <Navbar bg="light" expand="lg">
                 <Container fluid>
-                    <Navbar.Brand href="home">
+                    <Navbar.Brand href="/">
                     <img
                         src='~/src/img/Quiz_Masters_UCLL_LOGO.jpg'
                         alt='QuizMasters Logo'
@@ -45,7 +45,7 @@ const NavigationBar = () => {
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         
-                        <Form className="d-flex mx-auto">
+                        <Form className="d-flex mx-auto nav-join-quiz-form">
                             <FormControl
                                 ref={searchRef}
                                 type="search"
