@@ -1,15 +1,30 @@
+import { useState } from 'react';
+
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
+
+import { signUp } from '../axios_services/UserService';
 
 //TODO: Check for "type" email. Also check as required fields.
 const LoginForm = () => {
     const [validated, setValidated] = useState(false);
+    const [input, setInput] = useState(null);
 
-    const handleSubmit = (event) => {
+    //Handle sending the input to the backend.
+    async function handleSignUp(signupObject) {
+
+        await signUp(signupObject).then((resp) => {
+            console.log(resp);
+        })
+        .catch((ex) => {
+            console.log("Exception occurred while logging in.");
+            console.log(ex); //TODO: For debugging purposes, do not forget to comment out for Production.
+        })
+    }
+
+    //When the submit button is clicked, data will be taken from the input hook and sent through Axios to the backend.
+    async function handleSubmit(event) {
         const form = event.currentTarget;
-
-        console.log("Not yet implemented.");
 
         if (form.checkValidity() === false) {
             event.preventDefault();
@@ -18,10 +33,40 @@ const LoginForm = () => {
 
         setValidated(true);
 
-        //TODO: Send to Axios
-        //Testing push.
+        await handleSignUp(input);
     }
 
+    //Handle setting the input hook's email value.
+    const handleEmailInput = (event) => {
+        const { name, value } = event.currentTarget
+
+        setInput({
+            ...input,
+            email: value,
+        });
+    }
+
+    //Handle setting the input hook's username value.
+    const handlePasswordInput = (event) => {
+        const { name, value } = event.currentTarget
+
+        setInput({
+            ...input,
+            password: value,
+        });
+    }
+
+    //Handle setting the input hook's password value.
+    const handleUsernameInput = (event) => {
+        const { name, value } = event.currentTarget
+
+        setInput({
+            ...input,
+            username: value,
+        });
+    }
+
+    //HTML from here on out.
     return (
         <div id='Sign-Up-Form-Div'>
             <h1>Create an account:</h1>
@@ -34,6 +79,7 @@ const LoginForm = () => {
                         type="email"
                         placeholder="example@service.com"
                         className="text-center"
+                        onChange={handleEmailInput}
                     />
                     <Form.Control.Feedback type="invalid">Please fill in a correct email.</Form.Control.Feedback>
                     <Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text>
@@ -46,6 +92,7 @@ const LoginForm = () => {
                         type="text"
                         placeholder="Username"
                         className="text-center"
+                        onChange={handleUsernameInput}
                     />
                     <Form.Control.Feedback type="invalid">Please fill in a username.</Form.Control.Feedback>
                 </Form.Group>
@@ -57,6 +104,7 @@ const LoginForm = () => {
                         type="password"
                         placeholder="**********"
                         className="text-center"
+                        onChange={handlePasswordInput}
                     />
                     <Form.Control.Feedback type="invalid">Please fill in a password.</Form.Control.Feedback>
                 </Form.Group>
