@@ -1,6 +1,7 @@
 //Starting Footer template from: https://stackoverflow.com/questions/40515142/how-to-make-a-sticky-footer-in-react
-
 import Nav from 'react-bootstrap/Nav';
+
+import ucllLogo from '../img/ucll-logo.png';
 
 var style = {
     backgroundColor: "#F8F8F8",
@@ -34,7 +35,7 @@ const Footer = () => {
             <div style={style}>
                 <Nav.Link href="contact">Contact</Nav.Link>
                 <Nav.Link href="discord">Discord</Nav.Link>
-                <Nav.Link href="https://www.ucll.be/"><img src='~/src/img/UCLL_Logo.jpg' alt="UCLL Logo" /></Nav.Link>
+                <Nav.Link href="https://www.ucll.be/"><img id='UCLL-Logo' src={ucllLogo} alt="UCLL Logo" /></Nav.Link>
             </div>
         </div>
     )

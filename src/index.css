@@ -12,6 +12,13 @@ code {
     monospace;
 }
 
+#Quiz-Masters-Logo {
+  max-width: 200px
+}
+#UCLL-Logo {
+  max-width: 75px;
+}
+
 #Login-Form-Div, #Sign-Up-Form-Div {
   text-align: center;
   margin-top: 2rem;

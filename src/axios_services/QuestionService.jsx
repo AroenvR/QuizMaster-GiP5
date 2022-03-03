@@ -24,6 +24,7 @@ export function deleteQuestion(questionId) {
         type : 1,
         quiz_title : "string",
         question_string : "string",
+        description : "string",
         break : false,
         topic : "string"
     }

@@ -23,8 +23,6 @@
 // /*
 //     {
 //         answer_id : 1,
-//         question_id : 1,
-//         correct : true,
 //         answer_string : "string"
 //     }
 // */

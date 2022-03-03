@@ -10,6 +10,8 @@ import HomePage from "./ui_components/HomePage";
 import LoginForm from "./ui_components/LoginForm";
 import SignUpForm from "./ui_components/SignUpForm";
 import JoinQuizPage from "./ui_components/JoinQuizPage";
+import CreateQuizForm from "./ui_components/CreateQuizForm";
+import MultipleChoice from "./ui_components/question_components/MultipleChoice";
 import Footer from "./ui_components/Footer";
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
         <Route path="/login" element={<LoginForm />}></Route>
         <Route path="/sign-up" element={<SignUpForm />}></Route>
         <Route path="/join" element={<JoinQuizPage />}></Route>
+        <Route path="/host" element={<CreateQuizForm />}></Route>
+        <Route path="/temporary" element={<MultipleChoice />}></Route>
       </Routes>
 
       <Footer />    

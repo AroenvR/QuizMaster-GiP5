@@ -9,6 +9,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 
 import { getQuizByCode } from '../axios_services/QuizService';
+import logo from '../img/Quiz-Masters-Logo.jpg'
 
 const NavigationBar = () => {
     let searchRef = useRef(null);
@@ -38,7 +39,8 @@ const NavigationBar = () => {
                 <Container fluid>
                     <Navbar.Brand href="/">
                     <img
-                        src='~/src/img/Quiz_Masters_UCLL_LOGO.jpg'
+                        id="Quiz-Masters-Logo"
+                        src={logo}
                         alt='QuizMasters Logo'
                     />
                     </Navbar.Brand>

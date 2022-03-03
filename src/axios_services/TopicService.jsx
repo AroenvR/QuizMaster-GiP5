@@ -1,6 +1,6 @@
 import http from "../axios_services/Axios";
 
-export function getAllTopics() {
+export function getAll() {
     return http.get("/topics");
 }
 
