@@ -40,6 +40,7 @@ const LoginForm = () => {
 
         event.preventDefault(); //TODO: For presentation purposes, NO NOT forget to remove this.
 
+        // Block if form's Validity is false.
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();

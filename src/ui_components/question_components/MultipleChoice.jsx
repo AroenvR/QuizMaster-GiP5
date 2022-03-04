@@ -35,7 +35,6 @@ function MultipleChoice(props) {
     }
 
     //HTML from here on out.
-    //Basic Bootstrap was used for the radio buttons because the component based Bootstrap kept bugging out.
     return (
         <div id="Multiple-Choice-Div" alt="Div containing the multiple choice form.">
             <h1>{question.quiz_title}</h1>

@@ -5,6 +5,9 @@ import TrueOrFalse from "./question_components/TrueOrFalse"
  
 const QuizQuestion = () => {
 
+    // Decide which component to render depending on the received QuestionDTO.
+    // if break == true, show break component.
+    // else, give the corresponding question type depending on QuestionDTO.type with the DTO as parameter.
     function renderQuestion(DTO) {
         if (!DTO.break) {
             switch (DTO.type) {
@@ -21,9 +24,11 @@ const QuizQuestion = () => {
         return(<Break />);
     }
 
+    // HTML from here on out.
+    // TODO: Stop working with the MockDTO's when possible.
     return (
         <div id="Quiz-Question-Container" alt="Div containing the questions">
-            { renderQuestion(mockedQuestionDTO) }
+            { renderQuestion(mockedQuestionDTO) } 
         </div>
     )
 }

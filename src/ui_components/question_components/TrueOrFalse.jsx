@@ -37,7 +37,6 @@ function MultipleChoice(props) {
     }
 
     //HTML from here on out.
-    //Basic Bootstrap was used for the radio buttons because the component based Bootstrap kept bugging out.
     return (
         <div id="True-Or-False-Div" alt="Div containing the True or False form.">
             <h1>{question.quiz_title}</h1>

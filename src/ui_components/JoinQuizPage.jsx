@@ -11,9 +11,9 @@ var style = {
 
 const JoinQuizPage = () => {
     const [validated, setValidated] = useState(false);
-
     let joinRef = useRef(null);
 
+    // Send quizCode to the backend.
     async function fetchQuizByCode(quizCode) {
 
         await getQuizByCode(quizCode).then((resp) => {
@@ -30,13 +30,17 @@ const JoinQuizPage = () => {
             console.log(ex); //TODO: For debugging purposes, do not forget to comment out for Production.
 
             // Check the HTTP code here, then handle if necessary.
+            //TODO: ResponseEntity Error if Quiz starts at a certain time. "Error: Quiz with code "X12C3" starts on 13/03/2021 at 5:30am." should be made by the backend.
+
             window.location.href = '/quiz'; //TODO: For presentation purposes, NO NOT forget to remove this.
         })
     }
 
+    //When the submit button is clicked, data will be taken from the ref hook and sent through Axios to the backend.
     const handleJoin = (event) => {
         const input = event.currentTarget;
 
+        //Block if the form's validity is false.
         if (input.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
@@ -44,11 +48,8 @@ const JoinQuizPage = () => {
         else {
             fetchQuizByCode(joinRef.current.value);
         }
-        setValidated(true);
 
-        //TODO: Send to Axios
-        //TODO: Error if no quiz was found by that code
-        //TODO: Error if Quiz starts at a certain time. "Error: Quiz with code "X12C3" starts on 13/03/2021 at 5:30am."
+        setValidated(true);
     }
 
     return (

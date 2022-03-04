@@ -14,6 +14,7 @@ import logo from '../img/Quiz-Masters-Logo.png'
 const NavigationBar = () => {
     let searchRef = useRef(null);
 
+    // Send the Code to the backend.
     async function fetchQuizByCode(quizCode) {
 
         await getQuizByCode(quizCode).then((resp) => {
@@ -34,16 +35,9 @@ const NavigationBar = () => {
         })
     }
 
+    // Synchronous step inbetween to make sure the ref hook is fully loaded before sending to the backend.
     const handleJoin = () => {
-
-        fetchQuizByCode(searchRef.current.value).then((resp) => {
-
-        })
-        .catch((ex) => {
-            // ...?
-        });
-
-        //TODO: Route to either the joined Quiz or a 403 Forbidden
+        fetchQuizByCode(searchRef.current.value);
     }
 
     return (
