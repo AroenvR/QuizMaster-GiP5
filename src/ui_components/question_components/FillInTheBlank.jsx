@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 
 //Recreating the incoming DTO to have selectable variables in the 'question' hook.
@@ -15,52 +17,48 @@ let questionDTO = {
     topic: null
 }
 
-function MultipleChoice(props) {
+function FillInTheBlank(props) {
     useEffect(() => { setQuestion(props.value) });
     const [question, setQuestion] = useState(questionDTO);
     const [chosenAnswer, setChosenAnswer] = useState(null);
 
-    const handleSelection = (event) => {
-        const answerId = event.target.labels[0].textContent;
-
-        setChosenAnswer(answerId);
+    const handleInput = (event) => {
+        const input = event.target.value
+        setChosenAnswer(input);
     }
 
     const sendToBackend = () => {
-
         if (chosenAnswer !== null && chosenAnswer !== "") {
             console.log(chosenAnswer)
+
             //TODO: Send to Axios, baby!
-        }
+        } 
     }
 
     //HTML from here on out.
     //Basic Bootstrap was used for the radio buttons because the component based Bootstrap kept bugging out.
     return (
-        <div id="Multiple-Choice-Div" alt="Div containing the multiple choice form.">
+        <div id="Fill-In-The-Blank-Div" alt="Div containing the 'fill in the blank' form.">
             <h1>{question.quiz_title}</h1>
 
             <p className='question-description'>{question.description}</p>
-            
+
             <h3 className='question-string'>{question.question_string}</h3>
-
-            { question.answers.map((answer) => {
-                    return (
-                        <div className="form-check multiple-choice-answers" key={answer.answer_id}>
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id={answer.answer_id} onChange={handleSelection} />
-                            <label className="form-check-label" htmlFor={answer.answer_id}>
-                                { answer.answer_string }
-                            </label>
-                            <hr />
-                        </div>
-                    )
-                }) 
-            }
-
+            
+            <Form id='Fill-In-The-Answer'>
+                <FormControl
+                    type="text"
+                    placeholder="Type your answer here..."
+                    className="me-2"
+                    aria-label="Search"
+                    onChange={handleInput}
+                />
+            </Form>
+            
             <Button className='next-question' variant='success' onClick={sendToBackend}>Next Question!</Button>
         </div>
     )
 }
 
-export default MultipleChoice
+export default FillInTheBlank
 

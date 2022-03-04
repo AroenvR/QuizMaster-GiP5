@@ -66,3 +66,48 @@ code {
   max-width: 20vw;
   text-align: center;
 }
+
+#Quiz-Question-Container {
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+}
+
+#Multiple-Choice-Div, #True-Or-False-Div, #Fill-In-The-Blank-Div {
+  text-align: center;
+}
+.question-string {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+.question-description {
+  margin-top: 2rem;
+}
+
+.multiple-choice-answers {
+  text-align: start;
+  inline-size: 20rem;
+  overflow-wrap: break-word;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 20rem;
+}
+
+#True-Or-False-Btns-Div {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  max-width: 10rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+#Fill-In-The-Answer {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 20rem;
+  margin-bottom: 2rem;
+}
+

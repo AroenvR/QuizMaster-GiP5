@@ -9,7 +9,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 
 import { getQuizByCode } from '../axios_services/QuizService';
-import logo from '../img/Quiz-Masters-Logo.jpg'
+import logo from '../img/Quiz-Masters-Logo.png'
 
 const NavigationBar = () => {
     let searchRef = useRef(null);

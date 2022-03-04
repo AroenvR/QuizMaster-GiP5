@@ -18,44 +18,39 @@ let questionDTO = {
 function MultipleChoice(props) {
     useEffect(() => { setQuestion(props.value) });
     const [question, setQuestion] = useState(questionDTO);
-    const [chosenAnswer, setChosenAnswer] = useState(null);
+    const [chosenAnswer, setChosenAnswer] = useState();
 
-    const handleSelection = (event) => {
-        const answerId = event.target.labels[0].textContent;
+    const handleTrue = () => {
+        setChosenAnswer("true");
+    }
 
-        setChosenAnswer(answerId);
+    const handleFalse = () => {
+        setChosenAnswer("false");
     }
 
     const sendToBackend = () => {
-
-        if (chosenAnswer !== null && chosenAnswer !== "") {
+        if (chosenAnswer === "true" || chosenAnswer === "false") {
             console.log(chosenAnswer)
+
             //TODO: Send to Axios, baby!
-        }
+        } 
     }
 
     //HTML from here on out.
     //Basic Bootstrap was used for the radio buttons because the component based Bootstrap kept bugging out.
     return (
-        <div id="Multiple-Choice-Div" alt="Div containing the multiple choice form.">
+        <div id="True-Or-False-Div" alt="Div containing the True or False form.">
             <h1>{question.quiz_title}</h1>
 
             <p className='question-description'>{question.description}</p>
-            
+
             <h3 className='question-string'>{question.question_string}</h3>
 
-            { question.answers.map((answer) => {
-                    return (
-                        <div className="form-check multiple-choice-answers" key={answer.answer_id}>
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id={answer.answer_id} onChange={handleSelection} />
-                            <label className="form-check-label" htmlFor={answer.answer_id}>
-                                { answer.answer_string }
-                            </label>
-                            <hr />
-                        </div>
-                    )
-                }) 
-            }
+            <div id='True-Or-False-Btns-Div'>
+                <Button onClick={handleTrue}>True</Button>
+                <Button onClick={handleFalse}>False</Button>
+            </div>
+            
 
             <Button className='next-question' variant='success' onClick={sendToBackend}>Next Question!</Button>
         </div>
