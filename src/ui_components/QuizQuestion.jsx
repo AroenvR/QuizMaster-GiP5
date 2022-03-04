@@ -1,3 +1,4 @@
+import Break from "./question_components/Break";
 import FillInTheBlank from "./question_components/FillInTheBlank";
 import MultipleChoice from "./question_components/MultipleChoice"
 import TrueOrFalse from "./question_components/TrueOrFalse"
@@ -5,16 +6,19 @@ import TrueOrFalse from "./question_components/TrueOrFalse"
 const QuizQuestion = () => {
 
     function renderQuestion(DTO) {
-        switch (DTO.type) {
-            case 1:
-                return(<MultipleChoice value={DTO} />)
-            case 2:
-                return(<TrueOrFalse value={DTO} />);
-            case 3:
-                return(<FillInTheBlank value={DTO} />);
-            default:
-                return(<h1>Something went wrong getting the question.</h1>)
+        if (!DTO.break) {
+            switch (DTO.type) {
+                case 1:
+                    return(<MultipleChoice value={DTO} />);
+                case 2:
+                    return(<TrueOrFalse value={DTO} />);
+                case 3:
+                    return(<FillInTheBlank value={DTO} />);
+                default:
+                    return(<h1>Something went wrong getting the question.</h1>);
+            }
         }
+        return(<Break />);
     }
 
     return (
@@ -55,7 +59,7 @@ let mockedQuestionDTO = {
         answerDTOthree,
         answerDTOfour,
     ],
-    type : 3,
+    type : 1,
     quiz_title : "Quiz Title",
     question_string : "Question String",
     description : "Question Description",

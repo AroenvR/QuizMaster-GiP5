@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Redirect from 'react';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -14,18 +15,30 @@ const LoginForm = () => {
     //Handle logging in with the backend.
     async function handleLogin(loginObject) {
 
-        await login(loginObject).then((resp) => {
-            console.log(resp);
+        // Sending Login data to the backend.
+        return await login(loginObject).then((resp) => {
+            // Login data has been sent to the backend, handle the returns here. HTTP codes and possible objects.
+
+            console.log(resp); //TODO: For debugging purposes, do not forget to comment out for Production.
+
+            // Check here if response.code 200 success, then redirect.
+            // window.location.href = '/';
         })
         .catch((ex) => {
-            console.log("Exception occurred while logging in.");
+            console.log("Exception occurred while logging in."); 
+
             console.log(ex); //TODO: For debugging purposes, do not forget to comment out for Production.
+
+            // Check the HTTP code here, then handle if necessary.
+            window.location.href = '/'; //TODO: For presentation purposes, NO NOT forget to remove this.
         })
     }
 
     //When the submit button is clicked, data will be taken from the input hook and sent through Axios to the backend.
     async function handleSubmit(event) {
         const form = event.currentTarget;
+
+        event.preventDefault(); //TODO: For presentation purposes, NO NOT forget to remove this.
 
         if (form.checkValidity() === false) {
             event.preventDefault();
@@ -34,7 +47,7 @@ const LoginForm = () => {
 
         setValidated(true);
 
-        await handleLogin(input);
+        await handleLogin(input)
     }
 
     //Handle setting the input hook's email value.

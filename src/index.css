@@ -74,7 +74,7 @@ code {
   margin-top: 2rem;
 }
 
-#Multiple-Choice-Div, #True-Or-False-Div, #Fill-In-The-Blank-Div {
+#Multiple-Choice-Div, #True-Or-False-Div, #Fill-In-The-Blank-Div, #Quiz-Break-Div {
   text-align: center;
 }
 .question-string {
@@ -109,5 +109,9 @@ code {
   margin-right: auto;
   max-width: 20rem;
   margin-bottom: 2rem;
+}
+
+#Break-Btn {
+  margin-top: 5rem;
 }
 

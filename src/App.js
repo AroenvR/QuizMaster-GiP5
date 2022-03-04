@@ -25,7 +25,7 @@ function App() {
         <Route path="/sign-up" element={<SignUpForm />}></Route>
         <Route path="/join" element={<JoinQuizPage />}></Route>
         <Route path="/host" element={<CreateQuizForm />}></Route>
-        <Route path="/temporary" element={<QuizQuestion />}></Route>
+        <Route path="/quiz" element={<QuizQuestion />}></Route>
       </Routes>
 
       <Footer />    

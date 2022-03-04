@@ -15,20 +15,33 @@ const NavigationBar = () => {
     let searchRef = useRef(null);
 
     async function fetchQuizByCode(quizCode) {
-        console.log(quizCode)
 
         await getQuizByCode(quizCode).then((resp) => {
-            console.log(resp);
+            // Code has been sent to the backend, handle the returns here. HTTP codes and possible objects.
+
+            console.log(resp); //TODO: For debugging purposes, do not forget to comment out for Production.
+
+            // Check here if response.code 200 success, then redirect.
+            window.location.href = '/quiz'; 
         })
         .catch((ex) => {
             console.log("Exception fetching quizByCode");
-            console.log(ex);
+
+            console.log(ex); //TODO: For debugging purposes, do not forget to comment out for Production.
+
+            // Check the HTTP code here, then handle if necessary.
+            window.location.href = '/quiz'; //TODO: For presentation purposes, NO NOT forget to remove this.
         })
     }
 
     const handleJoin = () => {
 
-        fetchQuizByCode(searchRef.current.value);
+        fetchQuizByCode(searchRef.current.value).then((resp) => {
+
+        })
+        .catch((ex) => {
+            // ...?
+        });
 
         //TODO: Route to either the joined Quiz or a 403 Forbidden
     }
@@ -63,12 +76,12 @@ const NavigationBar = () => {
                             style={{ maxHeight: '100px' }}
                             navbarScroll
                         >
-                            <NavDropdown title="Personal" id="navbarScrollingDropdown">
+                            {/* <NavDropdown title="Personal" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="my-questions">My Questions</NavDropdown.Item>
                                 <NavDropdown.Item href="my-quizzes">My Quizzes</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="account">My Account</NavDropdown.Item>
-                            </NavDropdown>
+                            </NavDropdown> */}
                         </Nav>
 
                         <Nav.Link href="login"><Button variant="outline-primary">Log in</Button></Nav.Link>

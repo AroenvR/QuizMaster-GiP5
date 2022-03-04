@@ -13,14 +13,24 @@ const LoginForm = () => {
     //Handle sending the input to the backend.
     async function handleSignUp(signupObject) {
 
+        // Sending User data to the backend.
         await signUp(signupObject).then((resp) => {
-            console.log(resp);
+            // User data has been sent to the backend, handle the returns here. HTTP codes and possible objects.
+
+            console.log(resp); //TODO: For debugging purposes, do not forget to comment out for Production.
+
+            // Check here if response.code 200 success, then redirect.
+            window.location.href = '/';
         })
         .catch((ex) => {
-            console.log("Exception occurred while logging in.");
+            console.log("Exception occurred while sending User data."); 
+
             console.log(ex); //TODO: For debugging purposes, do not forget to comment out for Production.
+
+            // Check the HTTP code here, then handle if necessary.
+            window.location.href = '/'; //TODO: For presentation purposes, NO NOT forget to remove this.
         })
-    }
+    }    
 
     //When the submit button is clicked, data will be taken from the input hook and sent through Axios to the backend.
     async function handleSubmit(event) {

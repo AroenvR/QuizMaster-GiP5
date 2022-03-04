@@ -17,11 +17,20 @@ const JoinQuizPage = () => {
     async function fetchQuizByCode(quizCode) {
 
         await getQuizByCode(quizCode).then((resp) => {
-            console.log(resp);
+            // Code has been sent to the backend, handle the returns here. HTTP codes and possible objects.
+
+            console.log(resp); //TODO: For debugging purposes, do not forget to comment out for Production.
+
+            // Check here if response.code 200 success, then redirect.
+            // window.location.href = '/quiz';
         })
         .catch((ex) => {
             console.log("Exception fetching quizByCode");
-            console.log(ex);
+
+            console.log(ex); //TODO: For debugging purposes, do not forget to comment out for Production.
+
+            // Check the HTTP code here, then handle if necessary.
+            window.location.href = '/quiz'; //TODO: For presentation purposes, NO NOT forget to remove this.
         })
     }
 
