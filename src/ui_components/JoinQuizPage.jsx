@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import { getQuizByCode } from '../axios_services/QuizService';
+import { getQuizByCode, quizTitleFromReturn } from '../axios_services/QuizService';
 
 var style = {
     fontSize: "3rem",

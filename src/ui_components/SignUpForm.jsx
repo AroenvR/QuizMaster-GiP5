@@ -20,7 +20,7 @@ const LoginForm = () => {
             console.log(resp); //TODO: For debugging purposes, do not forget to comment out for Production.
 
             // Check here if response.code 200 success, then redirect.
-            window.location.href = '/';
+            // window.location.href = '/';
         })
         .catch((ex) => {
             console.log("Exception occurred while sending User data."); 
@@ -28,7 +28,7 @@ const LoginForm = () => {
             console.log(ex); //TODO: For debugging purposes, do not forget to comment out for Production.
 
             // Check the HTTP code here, then handle if necessary.
-            window.location.href = '/'; //TODO: For presentation purposes, NO NOT forget to remove this.
+            // window.location.href = '/'; //TODO: For presentation purposes, NO NOT forget to remove this.
         })
     }    
 
@@ -56,16 +56,6 @@ const LoginForm = () => {
         });
     }
 
-    //Handle setting the input hook's username value.
-    const handlePasswordInput = (event) => {
-        const { name, value } = event.currentTarget
-
-        setInput({
-            ...input,
-            password: value,
-        });
-    }
-
     //Handle setting the input hook's password value.
     const handleUsernameInput = (event) => {
         const { name, value } = event.currentTarget
@@ -73,6 +63,16 @@ const LoginForm = () => {
         setInput({
             ...input,
             username: value,
+        });
+    }
+
+    //Handle setting the input hook's username value.
+    const handlePasswordInput = (event) => {
+        const { name, value } = event.currentTarget
+
+        setInput({
+            ...input,
+            password: value,
         });
     }
 

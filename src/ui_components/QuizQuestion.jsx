@@ -5,6 +5,8 @@ import TrueOrFalse from "./question_components/TrueOrFalse"
  
 const QuizQuestion = () => {
 
+    // Hook to getNext() here.
+
     // Decide which component to render depending on the received QuestionDTO.
     // if break == true, show break component.
     // else, give the corresponding question type depending on QuestionDTO.type with the DTO as parameter.
@@ -56,6 +58,11 @@ let answerDTOfour = {
     answer_string : "answer four"
 }
 
+let answerDTOfive = {
+    answer_id: 5,
+    answer_string : "answer five"
+}
+
 let mockedQuestionDTO = {
     question_id: null,
     answers: [
@@ -63,8 +70,9 @@ let mockedQuestionDTO = {
         answerDTOtwo,
         answerDTOthree,
         answerDTOfour,
+        // answerDTOfive
     ],
-    type : 1,
+    type : 3,
     quiz_title : "Quiz Title",
     question_string : "Question String",
     description : "Question Description",

@@ -115,3 +115,16 @@ code {
   margin-top: 5rem;
 }
 
+#Start-Quiz-Div {
+  text-align: center;
+  max-width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+}
+.start-quiz-btn {
+  margin-top: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+

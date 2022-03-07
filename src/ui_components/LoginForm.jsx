@@ -13,10 +13,10 @@ const LoginForm = () => {
     const [input, setInput] = useState(null);
 
     //Handle logging in with the backend.
-    async function handleLogin(loginObject) {
+    async function handleLogin(email, password) {
 
         // Sending Login data to the backend.
-        return await login(loginObject).then((resp) => {
+        return await login(email, password).then((resp) => {
             // Login data has been sent to the backend, handle the returns here. HTTP codes and possible objects.
 
             console.log(resp); //TODO: For debugging purposes, do not forget to comment out for Production.
@@ -48,7 +48,7 @@ const LoginForm = () => {
 
         setValidated(true);
 
-        await handleLogin(input)
+        await handleLogin(input.email, input.password)
     }
 
     //Handle setting the input hook's email value.
@@ -105,9 +105,9 @@ const LoginForm = () => {
                     Log in
                 </Button>
                 
-                <Nav.Link className='link-btn forgot-password-link' href="/forgot-password">
+                {/* <Nav.Link className='link-btn forgot-password-link' href="/forgot-password">
                     <Button id="Forgot-Password-Btn" variant="secondary">Forgot Password?</Button>
-                </Nav.Link>
+                </Nav.Link> */}
             </Form>
         </div>
     )

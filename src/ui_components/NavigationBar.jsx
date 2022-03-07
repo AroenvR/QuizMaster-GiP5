@@ -8,8 +8,10 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 
-import { getQuizByCode } from '../axios_services/QuizService';
+import { getQuizByCode, quizTitleFromReturn } from '../axios_services/QuizService';
 import logo from '../img/Quiz-Masters-Logo.png'
+
+export let quizTitleFromNav = '';
 
 const NavigationBar = () => {
     let searchRef = useRef(null);
