@@ -1,21 +1,23 @@
 import http from "./Axios";
 
-let basic = require('basic-authorization-header');
-
 export function login(email, password) {
-    return http.post("/login", null, {
+    return http.get("/login", {
         headers: {
-            "Authorization": basic(email, password),
+            "Authorization": "Basic " + btoa(email + ":" + password),
         }
     });
 }
 
 export function logout() {
-    return http.post("/logout")
+    return http.post("/logout");
 }
 
-export function signUp(object) {
-    return http.post("/sign-up" + object)
+export function signUp(email, username, password) {
+    return http.post("/members", {
+        email: email,
+        username: username,
+        password: password,
+    });
 }
 
 /*  SignupDTO

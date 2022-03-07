@@ -4,6 +4,9 @@ export default axios.create({
     baseURL: "http://localhost:3000/api",
     headers: {
         "Content-type": "application/json",
+        // headers: {
+            // "Authorization": "Basic " + btoa("somemail@mail.com" + ":" + "qewr"),
+        // }
     },
 
 });

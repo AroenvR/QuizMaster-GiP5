@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Cookies from 'js-cookie'; //?
 
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
@@ -8,13 +9,22 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 
-import { getQuizByCode, quizTitleFromReturn } from '../axios_services/QuizService';
+import { getQuizByCode } from '../axios_services/QuizService';
 import logo from '../img/Quiz-Masters-Logo.png'
 
-export let quizTitleFromNav = '';
+//Left off here.
+const sessId = Cookies.get("JSESSIONID-localhost-/api") || '';
 
 const NavigationBar = () => {
     let searchRef = useRef(null);
+    // const [loggedIn, setLoggedIn] = useState(false);
+
+    // if (sessId) {
+    //     setLoggedIn(true);
+    // }
+
+    // console.log(document.cookie);
+    // console.log("LoggedIn: " + loggedIn);
 
     // Send the Code to the backend.
     async function fetchQuizByCode(quizCode) {

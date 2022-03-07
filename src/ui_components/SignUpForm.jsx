@@ -11,10 +11,10 @@ const LoginForm = () => {
     const [input, setInput] = useState(null);
 
     //Handle sending the input to the backend.
-    async function handleSignUp(signupObject) {
+    async function handleSignUp(email, username, password) {
 
         // Sending User data to the backend.
-        await signUp(signupObject).then((resp) => {
+        await signUp(email, username, password).then((resp) => {
             // User data has been sent to the backend, handle the returns here. HTTP codes and possible objects.
 
             console.log(resp); //TODO: For debugging purposes, do not forget to comment out for Production.
@@ -25,7 +25,7 @@ const LoginForm = () => {
         .catch((ex) => {
             console.log("Exception occurred while sending User data."); 
 
-            console.log(ex); //TODO: For debugging purposes, do not forget to comment out for Production.
+            console.log(ex.response); //TODO: For debugging purposes, do not forget to comment out for Production.
 
             // Check the HTTP code here, then handle if necessary.
             // window.location.href = '/'; //TODO: For presentation purposes, NO NOT forget to remove this.
@@ -35,15 +35,17 @@ const LoginForm = () => {
     //When the submit button is clicked, data will be taken from the input hook and sent through Axios to the backend.
     async function handleSubmit(event) {
         const form = event.currentTarget;
+        event.preventDefault();
 
         if (form.checkValidity() === false) {
-            event.preventDefault();
             event.stopPropagation();
         }
 
         setValidated(true);
 
-        await handleSignUp(input);
+        console.log(input);
+
+        await handleSignUp(input.email, input.username, input.password);
     }
 
     //Handle setting the input hook's email value.

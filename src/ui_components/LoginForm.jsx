@@ -16,21 +16,32 @@ const LoginForm = () => {
     async function handleLogin(email, password) {
 
         // Sending Login data to the backend.
-        return await login(email, password).then((resp) => {
+        await login(email, password).then((resp) => {
             // Login data has been sent to the backend, handle the returns here. HTTP codes and possible objects.
 
             console.log(resp); //TODO: For debugging purposes, do not forget to comment out for Production.
 
-            // Check here if response.code 200 success, then redirect.
+            if (resp.status === 200) {
+
+                // Creating localStorage variable for easily redirecting.
+                localStorage.setItem("loggedIn", "true");
+
+                // Redirecting to home.
+                window.location.href = '/';
+            }
+
+            // Check here if response.code 200 success and a Session Cookie exists, then redirect.
             // window.location.href = '/';
         })
         .catch((ex) => {
             console.log("Exception occurred while logging in."); 
 
-            console.log(ex); //TODO: For debugging purposes, do not forget to comment out for Production.
+            // Just making sure localStorage doesn't get stuck.
+            localStorage.setItem("loggedIn", "false");
+
+            // console.log(ex.response); //Here for debugging.
 
             // Check the HTTP code here, then handle if necessary.
-            window.location.href = '/'; //TODO: For presentation purposes, NO NOT forget to remove this.
         })
     }
 
@@ -38,11 +49,10 @@ const LoginForm = () => {
     async function handleSubmit(event) {
         const form = event.currentTarget;
 
-        event.preventDefault(); //TODO: For presentation purposes, NO NOT forget to remove this.
+        event.preventDefault();
 
         // Block if form's Validity is false.
         if (form.checkValidity() === false) {
-            event.preventDefault();
             event.stopPropagation();
         }
 

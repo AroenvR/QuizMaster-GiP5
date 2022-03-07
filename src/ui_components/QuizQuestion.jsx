@@ -1,16 +1,57 @@
+import { useEffect, useState } from 'react';
+
 import Break from "./question_components/Break";
 import FillInTheBlank from "./question_components/FillInTheBlank";
 import MultipleChoice from "./question_components/MultipleChoice"
 import TrueOrFalse from "./question_components/TrueOrFalse"
- 
-const QuizQuestion = () => {
 
-    // Hook to getNext() here.
+import { getNext } from "../axios_services/QuestionService";
+ 
+let QuestionDTO = {
+    question_id: null,
+    answers: [],
+    type : null,
+    quiz_title : null,
+    question_string : null,
+    description : null,
+    break : null,
+    topic : null
+}
+
+const QuizQuestion = () => {
+    useEffect(() => { getQuestion() });
+    const [loading, setLoading] = useState(true);
+    const [question, setQuestion] = useState(QuestionDTO);
+
+    async function getQuestion() {
+        setLoading(true);
+
+        console.log('Get next is a WIP');
+
+        // This is looping endlessly for some reason.
+        // await getNext().then((resp) => {
+        //     // const { name, value } = resp.data; // Probably not the way to fix it but problems for later.
+
+        //     // setQuestion({
+        //     //     ...question,
+        //     //     [name]: value,
+        //     // });
+        // })
+        // .catch((ex) => {
+        //     // console.log(ex);
+        // })
+
+        setLoading(false);
+    }
 
     // Decide which component to render depending on the received QuestionDTO.
     // if break == true, show break component.
     // else, give the corresponding question type depending on QuestionDTO.type with the DTO as parameter.
-    function renderQuestion(DTO) {
+    function renderQuestion(DTO) { //Change DTO to question (hook)
+        if (loading) {
+            return <div>Quiz loading.</div>
+        }
+
         if (!DTO.break) {
             switch (DTO.type) {
                 case 1:
