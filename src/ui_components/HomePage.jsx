@@ -14,8 +14,8 @@ const HomePage = () => {
                 <Button variant="primary">Host Quiz!</Button>
             </Nav.Link>
 
-            <Nav.Link className='link-btn create-question-link' href="/">
-                <Button className="testbtn" variant="primary disabled">Create Custom Question!</Button>
+            <Nav.Link className='link-btn create-question-link' href="/create-question">
+                <Button className="testbtn" variant="primary">Create Custom Question!</Button>
             </Nav.Link>
         </div>
     )

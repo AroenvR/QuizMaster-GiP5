@@ -80,27 +80,27 @@ export default QuizQuestion
 
 //MockDTO's
 let answerDTOone = {
-    answer_id: 1,
+    answer_id: 0,
     answer_string : "answer one"
 }
 
 let answerDTOtwo = {
-    answer_id: 2,
+    answer_id: 1,
     answer_string : "answer two"
 }
 
 let answerDTOthree = {
-    answer_id: 3,
+    answer_id: 2,
     answer_string : "answer three"
 }
 
 let answerDTOfour = {
-    answer_id: 4,
+    answer_id: 3,
     answer_string : "answer four"
 }
 
 let answerDTOfive = {
-    answer_id: 5,
+    answer_id: 4,
     answer_string : "answer five"
 }
 
@@ -113,7 +113,7 @@ let mockedQuestionDTO = {
         answerDTOfour,
         // answerDTOfive
     ],
-    type : 3,
+    type : 1,
     quiz_title : "Quiz Title",
     question_string : "Question String",
     description : "Question Description",

@@ -12,6 +12,7 @@ import SignUpForm from "./ui_components/SignUpForm";
 import JoinQuizPage from "./ui_components/JoinQuizPage";
 import CreateQuizForm from "./ui_components/CreateQuizForm";
 import QuizQuestion from "./ui_components/QuizQuestion";
+import CreateQuestionPage from "./ui_components/CreateQuestionPage";
 import Footer from "./ui_components/Footer";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/join" element={<JoinQuizPage />}></Route>
         <Route path="/host" element={<CreateQuizForm />}></Route>
         <Route path="/quiz" element={<QuizQuestion />}></Route>
+        <Route path="/create-question" element={<CreateQuestionPage />}></Route>
       </Routes>
 
       <Footer />    
