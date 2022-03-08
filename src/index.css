@@ -115,16 +115,15 @@ code {
   margin-top: 5rem;
 }
 
-/* #Start-Quiz-Div {
-  text-align: center;
-  max-width: 30rem;
-  margin-left: auto;
-  margin-right: auto;
+.create-question-hr {
   margin-top: 2rem;
 }
-.start-quiz-btn {
-  margin-top: 5rem;
+
+#True-Or-False-Btn-Div {
   margin-left: auto;
   margin-right: auto;
-} */
-
+  margin-bottom: 1rem;
+  max-width: 10rem;
+  display: flex;
+  justify-content: space-between;
+}

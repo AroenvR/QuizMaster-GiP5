@@ -7,61 +7,57 @@ import CreateTrueOrFalse from './question_components/CreateTrueOrFalse';
 import CreateFillInTheBlank from './question_components/CreateFillInTheBlank';
 
 const CreateQuestionPage = () => {
-    const [dropdown, setDropdown] = useState("Select question type");
+    const [dropdown, setDropdown] = useState("Multiple Choice");
 
     const handleMultipleChoice = () => {
         setDropdown("Multiple Choice");
-
-
     }
     
     const handleTrueOrFalse = () => {
         setDropdown("True or False");
-
     }
 
     const handleFillInTheBlank = () => {
         setDropdown("Fill in the Blank");
-
     }
 
-    const renderDropdownItems = () => {
-        switch(dropdown) {
+    // const renderDropdownItems = () => {    
+    //     switch(dropdown) {
 
-            case "Multiple Choice":
-                return (
-                    <Dropdown.Menu>
-                        <Dropdown.Item onClick={handleTrueOrFalse}>True or False</Dropdown.Item>
-                        <Dropdown.Item onClick={handleFillInTheBlank}>Fill in the Blank</Dropdown.Item>
-                    </Dropdown.Menu>
-                );
+    //         case "Multiple Choice":
+    //             return (
+    //                 <Dropdown.Menu>
+    //                     <Dropdown.Item onClick={handleTrueOrFalse}>True or False</Dropdown.Item>
+    //                     <Dropdown.Item onClick={handleFillInTheBlank}>Fill in the Blank</Dropdown.Item>
+    //                 </Dropdown.Menu>
+    //             );
             
-            case "True or False":
-                return (
-                    <Dropdown.Menu>
-                        <Dropdown.Item onClick={handleMultipleChoice}>Multiple Choice</Dropdown.Item>
-                        <Dropdown.Item onClick={handleFillInTheBlank}>Fill in the Blank</Dropdown.Item>
-                    </Dropdown.Menu>
-                );
+    //         case "True or False":
+    //             return (
+    //                 <Dropdown.Menu>
+    //                     <Dropdown.Item onClick={handleMultipleChoice}>Multiple Choice</Dropdown.Item>
+    //                     <Dropdown.Item onClick={handleFillInTheBlank}>Fill in the Blank</Dropdown.Item>
+    //                 </Dropdown.Menu>
+    //             );
 
-            case "Fill in the Blank":
-                return (
-                    <Dropdown.Menu>
-                        <Dropdown.Item onClick={handleMultipleChoice}>Multiple Choice</Dropdown.Item>
-                        <Dropdown.Item onClick={handleTrueOrFalse}>True or False</Dropdown.Item>
-                    </Dropdown.Menu>
-                );
+    //         case "Fill in the Blank":
+    //             return (
+    //                 <Dropdown.Menu>
+    //                     <Dropdown.Item onClick={handleMultipleChoice}>Multiple Choice</Dropdown.Item>
+    //                     <Dropdown.Item onClick={handleTrueOrFalse}>True or False</Dropdown.Item>
+    //                 </Dropdown.Menu>
+    //             );
             
-            default:
-                return (
-                    <Dropdown.Menu>
-                        <Dropdown.Item onClick={handleMultipleChoice}>Multiple Choice</Dropdown.Item>
-                        <Dropdown.Item onClick={handleTrueOrFalse}>True or False</Dropdown.Item>
-                        <Dropdown.Item onClick={handleFillInTheBlank}>Fill in the Blank</Dropdown.Item>
-                    </Dropdown.Menu>
-                );
-        }
-    }
+    //         default:
+    //             return (
+    //                 <Dropdown.Menu>
+    //                     <Dropdown.Item onClick={handleMultipleChoice}>Multiple Choice</Dropdown.Item>
+    //                     <Dropdown.Item onClick={handleTrueOrFalse}>True or False</Dropdown.Item>
+    //                     <Dropdown.Item onClick={handleFillInTheBlank}>Fill in the Blank</Dropdown.Item>
+    //                 </Dropdown.Menu>
+    //             );
+    //     }
+    // }
 
     const renderQuestionForm = () => { 
         switch(dropdown) {
@@ -73,12 +69,12 @@ const CreateQuestionPage = () => {
             
             case "True or False":
                 return (
-                    <CreateMultipleChoice />
+                    <CreateTrueOrFalse />
                 );
 
             case "Fill in the Blank":
                 return (
-                    <CreateMultipleChoice />
+                    <CreateFillInTheBlank />
                 );
             
             default:
@@ -99,7 +95,13 @@ const CreateQuestionPage = () => {
                     {dropdown}
                 </Dropdown.Toggle>
 
-                { renderDropdownItems() }
+                <Dropdown.Menu>
+                        <Dropdown.Item onClick={handleMultipleChoice}>Multiple Choice</Dropdown.Item>
+                        <Dropdown.Item onClick={handleTrueOrFalse}>True or False</Dropdown.Item>
+                        <Dropdown.Item onClick={handleFillInTheBlank}>Fill in the Blank</Dropdown.Item>
+                </Dropdown.Menu>
+
+                {/* { renderDropdownItems() } */}
 
             </Dropdown>
 

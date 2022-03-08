@@ -2,10 +2,9 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 
-//Recreating the outgoing DTOs to have selectable variables in the 'question' hook.
+//Recreating the outgoing DTO to have selectable variables in the 'question' hook.
 let createQuestionDTO = {
     answers: [],
     type: 1,
@@ -14,9 +13,7 @@ let createQuestionDTO = {
     topic: null
 }
 
-let answers = [null, null];
-
-// Getting close, although the DTO's are somehow linked and being updated to the same values. Also, not rendering any extra Answer inputs yet. Maybe create DTO with the input, and then add?
+let answers = [""];
 
 function CreateMultipleChoice() {
     const [validated, setValidated] = useState(false);
@@ -68,6 +65,14 @@ function CreateMultipleChoice() {
 
     // Handling answer array for the next few functions.
 
+    const handleCorrectAnswerInput = (event) => {
+        const { name, value } = event.currentTarget;
+
+        answers[0] = value;
+    
+        setAnswersForQuestion(answers);
+    }    
+
     const handleAnswerInput = (event) => {
         const { name, value } = event.currentTarget;
 
@@ -76,25 +81,21 @@ function CreateMultipleChoice() {
         setAnswersForQuestion(answers);
     }
 
-    const setAnswersForQuestion = (answerArray) => {
+    // const addAnswerToArray = () => {
+    //     answers[answers.length] = "";
+    // }
+
+    const setAnswersForQuestion = (answers) => {
 
         setQuestion({
             ...question,
-            answers: answerArray,
+            answers: answers,
         });
     }
 
-    const addAnswerToArray = () => {
-        console.log("clicked")
-        answers.push(null);
-    }
-
-    console.log(question);
-
     //HTML from here on out.
     return (
-        <div id="Create-Multiple-Choice-Div" alt="Div containing creation for a 'multiple choice' question.">
-
+        <div className='Create-Custom-Question-Form' alt="Div containing custom question form.">
 
             <Form noValidate validated={validated} onSubmit={handleSubmit} className='mt-3'>
 
@@ -134,62 +135,46 @@ function CreateMultipleChoice() {
                     <Form.Control.Feedback type="invalid">Please fill in the Question.</Form.Control.Feedback>
                 </Form.Group>
 
-                { 
-                    answers.map((ans, index) => {
-                        console.log("index :" + index);
+                <Form.Group className="mb-3" controlId="validationForCorrectAnswer">
+                    <Form.Label>Correct Answer</Form.Label>
+                    <Form.Control
+                        required
+                        type="text"
+                        placeholder="4"
+                        className="text-center"
+                        onChange={handleCorrectAnswerInput}
+                    />
+                    <Form.Control.Feedback type="invalid">Please fill in an Answer.</Form.Control.Feedback>
+                </Form.Group>
 
-                        return (
-                            <Form.Group className="mb-3" controlId={`${index}`} key={index}>
-                                <Form.Label>{`Answer ${index + 1}`}</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="text"
-                                    placeholder="4"
-                                    className="text-center"
-                                    onChange={handleAnswerInput}
-                                />
-                                <Form.Control.Feedback type="invalid">Please fill in an Answer.</Form.Control.Feedback>
-                            </Form.Group>
-                        )
+                <hr className='create-question-hr' />
+                <p>Add up to 9 incorrect answers</p>
+                <hr />
+
+                {
+                    answers.map((ans, index) => {
+
+                        if(index < 9) {
+                            return (
+                                <Form.Group className="mb-3" controlId={`${index + 1}`} key={index}>
+                                    <Form.Label>{`Incorrect Answer ${index + 1}`}</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        className="text-center"
+                                        onChange={handleAnswerInput}
+                                    />
+                                </Form.Group>
+                            )
+                        }
                     }) 
                 }
-
-                <div id='Create-Multiple-Choice-Buttons-Div' alt="Div containing the Add Answer and Create! buttons.">
-                    <Button 
-                        variant="dark"
-                        onClick={addAnswerToArray}
-                    >
-                        Add another Answer
-                    </Button>
-
-                    <Button 
-                        variant="primary" 
-                        type="submit"
-                    >
-                        Create!
-                    </Button>
-                </div>
+                <Button 
+                    variant="primary" 
+                    type="submit"
+                >
+                    Create question!
+                </Button>
             </Form>
-
-            {/* <h1>{question.quiz_title}</h1>
-
-            <p className='question-description'>{question.description}</p>
-
-            <h3 className='question-string'>{question.question_string}</h3>
-            
-            <Form id='Fill-In-The-Answer'>
-                <FormControl
-                    type="text"
-                    placeholder="Type your answer here..."
-                    className="me-2"
-                    aria-label="Search"
-                    onChange={handleInput}
-                />
-
-
-            </Form>
-            
-            <Button className='next-question' variant='success' onClick={sendToBackend}>Next Question!</Button> */}
         </div>
     )
 }
