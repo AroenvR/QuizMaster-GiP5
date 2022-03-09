@@ -8,17 +8,10 @@ export function getByName(topicName) {
     return http.get("/topics/" + topicName)
 }
 
-// export function postTopic(object) {
-//     return http.post("/topics", object);
-// }
-
-// export function editTopic(id, object) {
-//     return http.put("/topics/" + id, object);
-// }
-
-// export function deleteTopic(id) {
-//     return http.delete("/topics/" + id);
-// }
+// MOCK data:
+export function getAllFakes() {
+    return http.get("/fake-topics");
+}
 
 /*  TopicDTO
     {

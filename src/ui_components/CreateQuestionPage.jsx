@@ -9,6 +9,7 @@ import CreateFillInTheBlank from './question_components/CreateFillInTheBlank';
 const CreateQuestionPage = () => {
     const [dropdown, setDropdown] = useState("Multiple Choice");
 
+    // The next few handlers are to set the dropdown button's text.
     const handleMultipleChoice = () => {
         setDropdown("Multiple Choice");
     }
@@ -21,44 +22,7 @@ const CreateQuestionPage = () => {
         setDropdown("Fill in the Blank");
     }
 
-    // const renderDropdownItems = () => {    
-    //     switch(dropdown) {
-
-    //         case "Multiple Choice":
-    //             return (
-    //                 <Dropdown.Menu>
-    //                     <Dropdown.Item onClick={handleTrueOrFalse}>True or False</Dropdown.Item>
-    //                     <Dropdown.Item onClick={handleFillInTheBlank}>Fill in the Blank</Dropdown.Item>
-    //                 </Dropdown.Menu>
-    //             );
-            
-    //         case "True or False":
-    //             return (
-    //                 <Dropdown.Menu>
-    //                     <Dropdown.Item onClick={handleMultipleChoice}>Multiple Choice</Dropdown.Item>
-    //                     <Dropdown.Item onClick={handleFillInTheBlank}>Fill in the Blank</Dropdown.Item>
-    //                 </Dropdown.Menu>
-    //             );
-
-    //         case "Fill in the Blank":
-    //             return (
-    //                 <Dropdown.Menu>
-    //                     <Dropdown.Item onClick={handleMultipleChoice}>Multiple Choice</Dropdown.Item>
-    //                     <Dropdown.Item onClick={handleTrueOrFalse}>True or False</Dropdown.Item>
-    //                 </Dropdown.Menu>
-    //             );
-            
-    //         default:
-    //             return (
-    //                 <Dropdown.Menu>
-    //                     <Dropdown.Item onClick={handleMultipleChoice}>Multiple Choice</Dropdown.Item>
-    //                     <Dropdown.Item onClick={handleTrueOrFalse}>True or False</Dropdown.Item>
-    //                     <Dropdown.Item onClick={handleFillInTheBlank}>Fill in the Blank</Dropdown.Item>
-    //                 </Dropdown.Menu>
-    //             );
-    //     }
-    // }
-
+    // This function handles which component to render depending on the text of the dropdown button.
     const renderQuestionForm = () => { 
         switch(dropdown) {
 
@@ -100,8 +64,6 @@ const CreateQuestionPage = () => {
                         <Dropdown.Item onClick={handleTrueOrFalse}>True or False</Dropdown.Item>
                         <Dropdown.Item onClick={handleFillInTheBlank}>Fill in the Blank</Dropdown.Item>
                 </Dropdown.Menu>
-
-                {/* { renderDropdownItems() } */}
 
             </Dropdown>
 

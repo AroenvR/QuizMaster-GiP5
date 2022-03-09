@@ -63,44 +63,19 @@ function CreateTrueOrFalse() {
         });
     }
 
-    const setAnswerToTrue = () => {
-        setQuestion({
-            ...question,
-            answers: "true"
-        })
-    }
-
-    const setAnswerToFalse = () => {
-        setQuestion({
-            ...question,
-            answers: "false"
-        })
-    }
-
-    // Handling answer array for the next few functions.
-
-    // const handleCorrectAnswerInput = (event) => {
-    //     const { name, value } = event.currentTarget;
-
-    //     answers[0] = value;
-    
-    //     setAnswersForQuestion(answers);
-    // }    
-
-    // const handleAnswerInput = (event) => {
-    //     const { name, value } = event.currentTarget;
-
-    //     answers[event.currentTarget.id] = value;
-    
-    //     setAnswersForQuestion(answers);
-    // }
-
-    // const setAnswersForQuestion = (answers) => {
-
+    // These should be removable, check this when you get around to it.
+    // const setAnswerToTrue = () => {
     //     setQuestion({
     //         ...question,
-    //         answers: answers,
-    //     });
+    //         answers: "true"
+    //     })
+    // }
+
+    // const setAnswerToFalse = () => {
+    //     setQuestion({
+    //         ...question,
+    //         answers: "false"
+    //     })
     // }
 
     //HTML from here on out.
@@ -146,9 +121,9 @@ function CreateTrueOrFalse() {
                 </Form.Group>
                 
                 <div id="True-Or-False-Btn-Div" alt="Div containing the two 'true' and 'false' buttons.">
-                    <Button variant="success" onClick={setAnswerToTrue}>True</Button>
+                    <Button variant="success" onClick={() => setQuestion({ ...question, answers: "true" })}>True</Button>
 
-                    <Button variant="success" onClick={setAnswerToFalse}>False</Button>
+                    <Button variant="success" onClick={() => setQuestion({ ...question, answers: "false" })}>False</Button>
                 </div>
 
                 <Button 
