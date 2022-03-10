@@ -148,7 +148,7 @@ function CreateMultipleChoice() {
                 </Form.Group>
 
                 <hr className='create-question-hr' />
-                <p>Add up to 9 incorrect answers</p>
+                <p>Add up to 9 incorrect answers <br /> (not required)</p>
                 <hr />
 
                 {

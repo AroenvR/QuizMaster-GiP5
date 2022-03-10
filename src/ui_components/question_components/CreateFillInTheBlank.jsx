@@ -146,7 +146,7 @@ function CreateFillInTheBlank() {
                 </Form.Group>
 
                 <hr className='create-question-hr' />
-                <p>Add up to 9 additional correct answers</p>
+                <p>Add up to 9 additional correct answers <br /> (not required)</p>
                 <hr />
 
                 {

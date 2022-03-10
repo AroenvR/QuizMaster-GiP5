@@ -4,10 +4,6 @@ export function getAll() {
     return http.get("/topics");
 }
 
-export function getByName(topicName) {
-    return http.get("/topics/" + topicName)
-}
-
 // MOCK data:
 export function getAllFakes() {
     return http.get("/fake-topics");
