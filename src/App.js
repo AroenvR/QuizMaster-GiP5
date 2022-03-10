@@ -3,7 +3,7 @@ import {
   Routes
 } from "react-router-dom";
 
-import './App.css'; //TestEdit
+import './App.css';
 
 import NavigationBar from "./ui_components/NavigationBar";
 import HomePage from "./ui_components/HomePage";
@@ -14,8 +14,6 @@ import CreateQuizForm from "./ui_components/CreateQuizForm";
 import QuizQuestion from "./ui_components/QuizQuestion";
 import CreateQuestionPage from "./ui_components/CreateQuestionPage";
 import Footer from "./ui_components/Footer";
-
-localStorage.setItem("loggedIn", "false");
 
 function App() {
   return (

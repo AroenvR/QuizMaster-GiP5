@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Cookies from 'js-cookie';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -13,15 +14,19 @@ const LoginForm = () => {
 
     //Handle logging in with the backend.
     async function handleLogin(email, password) {
+        console.log("Attempting to log in.");
 
         // Sending Login data to the backend.
         await login(email, password).then((resp) => {
             // Login data has been sent to the backend, handle the returns here. HTTP codes and possible objects.
 
             if (resp.status === 200) {
+                Cookies.set("loggedIn", "true")
+                let myCookie = Cookies.get("loggedIn");
+                console.log(myCookie); //WORKING HERE
 
                 // Redirecting to home.
-                window.location.href = '/';
+                // window.location.href = '/';
             }
 
             // Check here if response.code 200 success and a Session Cookie exists, then redirect.
