@@ -15,6 +15,8 @@ import QuizQuestion from "./ui_components/QuizQuestion";
 import CreateQuestionPage from "./ui_components/CreateQuestionPage";
 import Footer from "./ui_components/Footer";
 
+localStorage.setItem("loggedIn", "false");
+
 function App() {
   return (
     <div id="Application-Div">

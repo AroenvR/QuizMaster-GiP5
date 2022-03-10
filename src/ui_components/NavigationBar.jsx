@@ -1,30 +1,17 @@
 import { useRef, useState } from "react";
-import Cookies from 'js-cookie'; //?
 
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 
 import { getQuizByCode } from '../axios_services/QuizService';
-import logo from '../img/Quiz-Masters-Logo.png'
-
-//Left off here.
-const sessId = Cookies.get("JSESSIONID-localhost-/api") || '';
+import logo from '../img/Quiz-Masters-Logo.png';
 
 const NavigationBar = () => {
     let searchRef = useRef(null);
-    // const [loggedIn, setLoggedIn] = useState(false);
-
-    // if (sessId) {
-    //     setLoggedIn(true);
-    // }
-
-    // console.log(document.cookie);
-    // console.log("LoggedIn: " + loggedIn);
 
     // Send the Code to the backend.
     async function fetchQuizByCode(quizCode) {
@@ -50,6 +37,23 @@ const NavigationBar = () => {
     // Synchronous step inbetween to make sure the ref hook is fully loaded before sending to the backend.
     const handleJoin = () => {
         fetchQuizByCode(searchRef.current.value);
+    }
+
+    const renderLoginLogout = () => {
+        
+        if (true) { //TODO: Get this to check for cookie.
+            return (
+                <div id="Login-And-Sign-Up-Btns-Div" alt="Div containing the login and signup buttons.">
+                    <Nav.Link href="login"><Button variant="outline-primary">Log in</Button></Nav.Link>
+                    <Nav.Link href="sign-up"><Button variant="outline-primary">Sign Up</Button></Nav.Link>
+                </div>
+            );
+        }
+        else {
+            return (
+                <Nav.Link href="logout"><Button variant="outline-primary">Logout</Button></Nav.Link>
+            );
+        }
     }
 
     return (
@@ -90,8 +94,7 @@ const NavigationBar = () => {
                             </NavDropdown> */}
                         </Nav>
 
-                        <Nav.Link href="login"><Button variant="outline-primary">Log in</Button></Nav.Link>
-                        <Nav.Link href="sign-up"><Button variant="outline-primary">Sign Up</Button></Nav.Link>
+                        { renderLoginLogout() }
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

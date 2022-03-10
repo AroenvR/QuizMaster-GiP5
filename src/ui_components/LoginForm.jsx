@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import Redirect from 'react';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Nav from 'react-bootstrap/Nav';
 
 import { login } from '../axios_services/UserService';
+import { handleErrorCode } from '../axios_services/CodeHandler';
 
 //Future Sprint: add "Forgot Password?" button's functionality.
 const LoginForm = () => {
@@ -19,12 +18,7 @@ const LoginForm = () => {
         await login(email, password).then((resp) => {
             // Login data has been sent to the backend, handle the returns here. HTTP codes and possible objects.
 
-            console.log(resp); //TODO: For debugging purposes, do not forget to comment out for Production.
-
             if (resp.status === 200) {
-
-                // Creating localStorage variable for easily redirecting.
-                localStorage.setItem("loggedIn", "true");
 
                 // Redirecting to home.
                 window.location.href = '/';
@@ -34,14 +28,9 @@ const LoginForm = () => {
             // window.location.href = '/';
         })
         .catch((ex) => {
-            console.log("Exception occurred while logging in."); 
+            // Exception occurred, being handled in CodeHandler.jsx
 
-            // Just making sure localStorage doesn't get stuck.
-            localStorage.setItem("loggedIn", "false");
-
-            // console.log(ex.response); //Here for debugging.
-
-            // Check the HTTP code here, then handle if necessary.
+            handleErrorCode(ex.response);
         })
     }
 

@@ -4,9 +4,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 import { signUp } from '../axios_services/UserService';
+import { handleErrorCode } from '../axios_services/CodeHandler';
 
-//TODO: Check for "type" email. Also check as required fields.
-const LoginForm = () => {
+const SignUpForm = () => {
     const [validated, setValidated] = useState(false);
     const [input, setInput] = useState(null);
 
@@ -15,35 +15,30 @@ const LoginForm = () => {
 
         // Sending User data to the backend.
         await signUp(email, username, password).then((resp) => {
-            // User data has been sent to the backend, handle the returns here. HTTP codes and possible objects.
+            // User data has been sent to the backend, redirecting if succesfsful (successful, I can't type apparently).
 
-            console.log(resp); //TODO: For debugging purposes, do not forget to comment out for Production.
-
-            // Check here if response.code 200 success, then redirect.
-            // window.location.href = '/';
+            if (resp.status === 201) {
+                window.location.href = '/';
+            }
         })
         .catch((ex) => {
-            console.log("Exception occurred while sending User data."); 
+            // Exception occurred, being handled in CodeHandler.jsx
 
-            console.log(ex.response); //TODO: For debugging purposes, do not forget to comment out for Production.
-
-            // Check the HTTP code here, then handle if necessary.
-            // window.location.href = '/'; //TODO: For presentation purposes, NO NOT forget to remove this.
+            handleErrorCode(ex.response);
         })
     }    
 
     //When the submit button is clicked, data will be taken from the input hook and sent through Axios to the backend.
     async function handleSubmit(event) {
         const form = event.currentTarget;
-        event.preventDefault();
 
+        event.preventDefault();
+        
         if (form.checkValidity() === false) {
             event.stopPropagation();
         }
 
         setValidated(true);
-
-        console.log(input);
 
         await handleSignUp(input.email, input.username, input.password);
     }
@@ -129,4 +124,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm;
+export default SignUpForm;
