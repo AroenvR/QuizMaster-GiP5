@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: 0 0 2rem 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -24,7 +24,8 @@ code {
   margin-top: 2rem;
   margin-right: auto;
   margin-left: auto;
-  max-width: 20vw;
+  max-width: 40vw;
+  min-width: 20rem;
 }
 
 #Forgot-Password-Btn {
@@ -126,4 +127,67 @@ code {
   max-width: 10rem;
   display: flex;
   justify-content: space-between;
+}
+
+#Create-Quiz-Form{
+  margin: 2rem auto 0 auto;
+  max-width: 60rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 5rem auto;
+  grid-template-areas: "field1 field2 field3"
+                       "field4 field5 field6";
+  gap: 20px;
+  justify-items: center;
+  text-align: center;
+}
+
+#Create-Quiz-Form>h1{
+  grid-area: field1;
+  align-self: center;
+}
+
+#Create-Quiz-Form>h3{
+  grid-area: field2;
+  align-self: center;
+}
+
+#Create-Quiz-Form>h4{
+  grid-area: field3;
+  align-self: center;
+}
+
+#Create-Quiz-Current-Questions{
+  grid-area: field4;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+
+#Create-Quiz-Topics-Container{
+  grid-area: field5;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+
+#Create-Quiz-Questions-By-Topic{
+  grid-area: field6;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+
+#Create-Quiz-Form>div>p{
+  padding: 0.2rem 0.5rem;
+  margin: 0;
+}
+
+#Create-Quiz-Form>div>p:hover{
+  background: #aae1fa;
+  border: #003469;
+  border-style: solid;
+  border-radius: 0.7rem;
+  font-size: large;
+  cursor: pointer;
 }

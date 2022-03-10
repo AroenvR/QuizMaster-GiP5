@@ -52,8 +52,8 @@ const CreateQuizForm = () => {
     return (
         <div id="Create-Quiz-Form" alt="Div containing the Quiz creation form.">
 
-            <div>
-                <h1>Your quiz:</h1>
+            <h1>Your quiz:</h1>
+            <div id="Create-Quiz-Current-Questions">
                 {
                     chosenQuestions.map((q, index) => {
                         return (
@@ -67,8 +67,8 @@ const CreateQuizForm = () => {
                 }
             </div>
 
+            <h3>All topics:</h3>
             <div id="Create-Quiz-Topics-Container">
-                <h3>All topics:</h3>
                 {
                     topics.map((t, index) => {
                         return (
@@ -83,12 +83,12 @@ const CreateQuizForm = () => {
                 }
             </div>
 
-            <div>
-                <h4>Possible questions:</h4>
+            <h4>Possible questions:</h4>
+            <div id="Create-Quiz-Questions-By-Topic">
                 {
                     questions.map((q, index) => {
                         return (
-                            <p className='possible-question-p' 
+                            <p className='possible-question-p'
                                 key={index}
                                 onClick={() => handleAddQuestion(q)}
                             >
@@ -100,7 +100,6 @@ const CreateQuizForm = () => {
             </div>
         </div>
     )
-    
 }
 
 export default CreateQuizForm
