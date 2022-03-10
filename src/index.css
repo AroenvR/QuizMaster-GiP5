@@ -7,6 +7,36 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.btn-success{
+  background-color: #e30147 !important;
+}
+
+.btn-outline-success{
+  border-color: #e30147 !important;
+  color: #e30147 !important;
+}
+
+.btn-outline-success:hover{
+  background-color: #e30147 !important;
+  color: white !important;
+}
+
+.btn-primary{
+  background-color: #003469 !important;
+}
+
+.btn-outline-primary{
+  border-color: #003469 !important;
+  color: #003469 !important;
+}
+
+.btn-outline-primary:hover{
+  background-color: #003469 !important;
+  color: white !important;
+}
+
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
