@@ -35,8 +35,6 @@ body {
   color: white !important;
 }
 
-
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -159,7 +157,7 @@ code {
   justify-content: space-between;
 }
 
-#Create-Quiz-Form{
+#Create-Quiz-Form {
   margin: 2rem auto 0 auto;
   max-width: 60rem;
   display: grid;
@@ -172,52 +170,97 @@ code {
   text-align: center;
 }
 
-#Create-Quiz-Form>h1{
+#Create-Quiz-Form>h1 {
   grid-area: field1;
   align-self: center;
 }
 
-#Create-Quiz-Form>h3{
+#Create-Quiz-Form>h3 {
   grid-area: field2;
   align-self: center;
 }
 
-#Create-Quiz-Form>h4{
+#Create-Quiz-Form>h4 { 
   grid-area: field3;
   align-self: center;
 }
 
-#Create-Quiz-Current-Questions{
+#Create-Quiz-Current-Questions {
   grid-area: field4;
   display: flex;
   flex-direction: column;
   justify-items: center;
 }
 
-#Create-Quiz-Topics-Container{
+#Create-Quiz-Topics-Container {
   grid-area: field5;
   display: flex;
   flex-direction: column;
   justify-items: center;
 }
 
-#Create-Quiz-Questions-By-Topic{
+#Create-Quiz-Questions-By-Topic {
   grid-area: field6;
   display: flex;
   flex-direction: column;
   justify-items: center;
 }
 
-#Create-Quiz-Form>div>p{
+#Create-Quiz-Page {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+#Create-Quiz-Form>div>p {
   padding: 0.2rem 0.5rem;
   margin: 0;
 }
-
-#Create-Quiz-Form>div>p:hover{
+/* Could be the p:hover select is wrong here. */
+#Create-Quiz-Form p:hover {
   background: #aae1fa;
   border: #003469;
   border-style: solid;
   border-radius: 0.7rem;
-  font-size: large;
+  font-size: 1.15rem;
   cursor: pointer;
+}
+#Quiz-Title-Label {
+  font-size: 3rem;
+}
+#validationForTitle {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 30rem;
+}
+
+.chosen-question-div {
+  display: flex;
+}
+.current-question-p {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 15rem;
+}
+.delete-question-icon {
+  margin-top: 10px;
+  margin-bottom: auto;
+  margin-left: auto;
+}
+.delete-question-icon:hover {
+  color: red;
+}
+#Quiz-Creation-Form-Hr {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  max-width: 60rem;
+}
+#Quiz-Start-End-Time-Div {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50rem;
+  display: flex;
+  justify-content: space-between;
 }

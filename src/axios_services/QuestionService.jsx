@@ -17,8 +17,8 @@ export function deleteQuestion(questionId) {
 }
 
 // MOCK data
-export function getAllFakeQuestionsForTopic(topic) {
-    return http.get("/fake-questions/" + topic);
+export function getAllQuestionsForTopic(topic) {
+    return http.get("/questions/" + topic);
 }
 
 /*  QuestionDTO
