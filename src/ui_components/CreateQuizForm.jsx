@@ -14,7 +14,7 @@ import { handleErrorCode } from '../axios_services/CodeHandler';
 
 
 let modalInitializer = {
-    answers: [],
+    answers: [1, 2, 3],
     type : null,
     questionString : null,
     description : null,

@@ -1,12 +1,12 @@
 import http from "../axios_services/Axios";
 
 export function getQuizByCode(quizCode) {
-    return http.get("/quizzes/code?=" + quizCode);
+    return http.get("/quizzes/?code=" + quizCode);
 }
 
-export function getQuizById(quizId) {
-    return http.get("/quizzes/" + quizId)
-}
+// export function getQuizById(quizId) {
+//     return http.get("/quizzes/" + quizId)
+// }
 
 export function createQuiz(object) {
     return http.post("/quizzes", object);
@@ -16,9 +16,9 @@ export function createQuiz(object) {
 //     return http.put("/quizzes/" + id, object);
 // }
 
-export function deleteQuiz(quizId) {
-    return http.delete("/quizzes/" + quizId);
-}
+// export function deleteQuiz(quizId) {
+//     return http.delete("/quizzes/" + quizId);
+// }
 
 /*  QuizDTO
     {

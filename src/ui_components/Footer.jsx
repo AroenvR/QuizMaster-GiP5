@@ -33,8 +33,8 @@ const Footer = () => {
         <div id='Footer-Div' alt="The styling for the two child divs is in the Footer.jsx component.">
             <div style={phantom} />
             <div style={style}>
-                <Nav.Link href="contact">Contact</Nav.Link>
-                <Nav.Link href="discord">Discord</Nav.Link>
+                {/* <Nav.Link href="contact">Contact</Nav.Link>
+                <Nav.Link href="discord">Discord</Nav.Link> */}
                 <Nav.Link href="https://www.ucll.be/"><img id='UCLL-Logo' src={ucllLogo} alt="UCLL Logo" /></Nav.Link>
             </div>
         </div>

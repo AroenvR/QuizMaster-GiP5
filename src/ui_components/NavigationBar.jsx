@@ -19,16 +19,19 @@ const NavigationBar = () => {
     // Send the Code to the backend.
     async function fetchQuizByCode(quizCode) {
 
-        await getQuizByCode(quizCode).then((resp) => {
+        // Check the input isn't empty before sending to the backend.
+        if(quizCode !== "") {
+            await getQuizByCode(quizCode).then((resp) => {
 
-            // If quizCode was found and Participant was successfuly created, go on to the quiz.
-            if(resp.status === 201) {
-                window.location.href = '/quiz'; 
-            }
-        })
-        .catch((ex) => {
-            handleErrorCode(ex.response);
-        })
+                // If quizCode was found and Participant was successfuly created, go on to the quiz.
+                if(resp.status === 201) {
+                    window.location.href = '/quiz';
+                }
+            })
+            .catch((ex) => {
+                handleErrorCode(ex.response);
+            })
+        }        
     }
 
     // Synchronous step inbetween to make sure the ref hook is fully loaded before sending to the backend.
@@ -55,7 +58,7 @@ const NavigationBar = () => {
             );
         }
         return (
-            <Nav.Link href="/login"><Button variant="outline-primary" onClick={handleLogout}>Logout</Button></Nav.Link>
+            <Nav.Link href="/"><Button variant="outline-primary" onClick={handleLogout}>Logout</Button></Nav.Link>
         );
     }
 

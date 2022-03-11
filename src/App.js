@@ -16,11 +16,6 @@ import QuizQuestion from "./ui_components/QuizQuestion";
 import CreateQuestionPage from "./ui_components/CreateQuestionPage";
 import Footer from "./ui_components/Footer";
 
-// Can I make a global variable that triggers (localStorage) when you try to access an unauthorized page?
-// Then that variable can pop up requesting a loginjust like it happens in CreateQuizForm.
-// INSIDE THAT MODAL I can put a loginform!
-// If canceled, then redirect to home. BEAUTIFUL!
-
 function App() {
   let logCookie = Cookies.get("loggedIn");
 
@@ -37,28 +32,27 @@ function App() {
             <Route path="/host" element={<CreateQuizForm />}></Route>
             <Route path="/quiz" element={<QuizQuestion />}></Route>
             <Route path="/create-question" element={<CreateQuestionPage />}></Route>
+            <Route path="/*" element={<HomePage />}></Route>
           </Routes>
   
           <Footer /> 
         </div>
       );
     }
-    else {
-      return (
-        <div id="Application-Div">
-          <NavigationBar />
-  
-          <Routes>
-            <Route path="/" element={<HomePage />}></Route>
-            <Route path="/login" element={<LoginForm />}></Route>
-            <Route path="/sign-up" element={<SignUpForm />}></Route>
-            <Route path="/*" element={<LoginForm />}></Route>
-          </Routes>
-  
-          <Footer /> 
-        </div>
-      );
-    }
+    return (
+      <div id="Application-Div">
+        <NavigationBar />        
+
+        <Routes>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/login" element={<LoginForm />}></Route>
+          <Route path="/sign-up" element={<SignUpForm />}></Route>
+          <Route path="/*" element={<LoginForm />}></Route>
+        </Routes>
+
+        <Footer /> 
+      </div>
+    );
   }
 
   // HTML from here on out. 

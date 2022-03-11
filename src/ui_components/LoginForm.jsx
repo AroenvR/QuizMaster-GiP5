@@ -7,14 +7,12 @@ import Button from 'react-bootstrap/Button';
 import { login } from '../axios_services/UserService';
 import { handleErrorCode } from '../axios_services/CodeHandler';
 
-//Future Sprint: add "Forgot Password?" button's functionality.
 const LoginForm = () => {
     const [validated, setValidated] = useState(false);
     const [input, setInput] = useState(null);
 
     //Handle logging in with the backend.
     async function handleLogin(email, password) {
-        console.log("Attempting to log in.");
 
         // Sending Login data to the backend.
         await login(email, password).then((resp) => {
@@ -28,7 +26,7 @@ const LoginForm = () => {
             }
         })
         .catch((ex) => {
-            handleErrorCode(ex.response);
+            ex.response.status == 401 ? alert(ex.response.data.error) : handleErrorCode(ex.response); // 401 from Spring Security gives a different error message than Jackson.
         })
     }
 
@@ -107,7 +105,7 @@ const LoginForm = () => {
                 </Nav.Link> */}
             </Form>
         </div>
-    )
+    );
 }
 
 export default LoginForm;
