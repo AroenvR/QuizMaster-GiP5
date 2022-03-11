@@ -8,8 +8,8 @@ import Cookies from 'js-cookie';
 
 import NavigationBar from "./ui_components/NavigationBar";
 import HomePage from "./ui_components/HomePage";
-// import LoginForm from "./ui_components/LoginForm";
-// import SignUpForm from "./ui_components/SignUpForm";
+import LoginForm from "./ui_components/LoginForm";
+import SignUpForm from "./ui_components/SignUpForm";
 import JoinQuizPage from "./ui_components/JoinQuizPage";
 import CreateQuizForm from "./ui_components/CreateQuizForm";
 import QuizQuestion from "./ui_components/QuizQuestion";
@@ -50,9 +50,9 @@ function App() {
   
           <Routes>
             <Route path="/" element={<HomePage />}></Route>
-            {/* <Route path="/login" element={<LoginForm />}></Route>
-            <Route path="/sign-up" element={<SignUpForm />}></Route> */}
-            {/* <Route path="/*" element={<LoginForm />}></Route> */}
+            <Route path="/login" element={<LoginForm />}></Route>
+            <Route path="/sign-up" element={<SignUpForm />}></Route>
+            <Route path="/*" element={<LoginForm />}></Route>
           </Routes>
   
           <Footer /> 
