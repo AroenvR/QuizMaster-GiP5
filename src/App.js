@@ -18,6 +18,10 @@ import Footer from "./ui_components/Footer";
 
 function App() {
   let logCookie = Cookies.get("loggedIn");
+  let jCookie = Cookies.get("JSESSIONID");
+
+  console.log(jCookie)
+  console.log(document.cookie)
 
   // Checking which routes to allow before rendering.
   const checkAuthentication = () => {
