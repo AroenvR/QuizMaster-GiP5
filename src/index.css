@@ -56,6 +56,10 @@ code {
   min-width: 20rem;
 }
 
+#Login-And-Sign-Up-Btns-Div {
+  display: flex;
+}
+
 #Forgot-Password-Btn {
   color: black;
 }

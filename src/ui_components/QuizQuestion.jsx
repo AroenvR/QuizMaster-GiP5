@@ -19,7 +19,7 @@ let QuestionDTO = {
 }
 
 const QuizQuestion = () => {
-    useEffect(() => { getQuestion() });
+    useEffect(() => { getQuestion() }, []);
     const [loading, setLoading] = useState(true);
     const [question, setQuestion] = useState(QuestionDTO);
 
@@ -28,7 +28,7 @@ const QuizQuestion = () => {
 
         console.log('Get next is a WIP');
 
-        // This is looping endlessly for some reason.
+        // This is looping endlessly for some reason. EDIT: should be fixed?
         // await getNext().then((resp) => {
         //     // const { name, value } = resp.data; // Probably not the way to fix it but problems for later.
 

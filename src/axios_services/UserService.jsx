@@ -9,7 +9,7 @@ export function login(email, password) {
 }
 
 export function logout() {
-    return http.post("/logout");
+    return http.get("/logout");
 }
 
 export function signUp(email, username, password) {

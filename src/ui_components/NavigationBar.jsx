@@ -1,4 +1,5 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import Cookies from 'js-cookie';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
@@ -8,7 +9,9 @@ import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 
 import { getQuizByCode } from '../axios_services/QuizService';
+import { logout } from '../axios_services/UserService';
 import logo from '../img/Quiz-Masters-Logo.png';
+import { handleErrorCode } from '../axios_services/CodeHandler';
 
 const NavigationBar = () => {
     let searchRef = useRef(null);
@@ -17,20 +20,14 @@ const NavigationBar = () => {
     async function fetchQuizByCode(quizCode) {
 
         await getQuizByCode(quizCode).then((resp) => {
-            // Code has been sent to the backend, handle the returns here. HTTP codes and possible objects.
 
-            console.log(resp); //TODO: For debugging purposes, do not forget to comment out for Production.
-
-            // Check here if response.code 200 success, then redirect.
-            window.location.href = '/quiz'; 
+            // If quizCode was found and Participant was successfuly created, go on to the quiz.
+            if(resp.status === 201) {
+                window.location.href = '/quiz'; 
+            }
         })
         .catch((ex) => {
-            console.log("Exception fetching quizByCode");
-
-            console.log(ex); //TODO: For debugging purposes, do not forget to comment out for Production.
-
-            // Check the HTTP code here, then handle if necessary.
-            window.location.href = '/quiz'; //TODO: For presentation purposes, NO NOT forget to remove this.
+            handleErrorCode(ex.response);
         })
     }
 
@@ -39,9 +36,17 @@ const NavigationBar = () => {
         fetchQuizByCode(searchRef.current.value);
     }
 
+    // Setting cookie for rendering login / logout buttons.
+    async function handleLogout() {
+        Cookies.set("loggedIn", "false");
+
+        await logout();
+    }
+
+    // Check with cookie which buttons to render.
     const renderLoginLogout = () => {
         
-        if (true) { //TODO: Get this to check for cookie.
+        if (Cookies.get("loggedIn") == "false") { //TODO: Get this to check for cookie.
             return (
                 <div id="Login-And-Sign-Up-Btns-Div" alt="Div containing the login and signup buttons.">
                     <Nav.Link href="login"><Button variant="outline-primary">Log in</Button></Nav.Link>
@@ -49,13 +54,12 @@ const NavigationBar = () => {
                 </div>
             );
         }
-        else {
-            return (
-                <Nav.Link href="logout"><Button variant="outline-primary">Logout</Button></Nav.Link>
-            );
-        }
+        return (
+            <Nav.Link href="/login"><Button variant="outline-primary" onClick={handleLogout}>Logout</Button></Nav.Link>
+        );
     }
 
+    // HTML from here on out.
     return (
         <div id="Navigation-Bar-Div">
             <Navbar bg="light" expand="lg">

@@ -22,19 +22,12 @@ const LoginForm = () => {
 
             if (resp.status === 200) {
                 Cookies.set("loggedIn", "true")
-                let myCookie = Cookies.get("loggedIn");
-                console.log(myCookie); //WORKING HERE
+                localStorage.setItem("loggedIn", "true");
 
-                // Redirecting to home.
-                // window.location.href = '/';
+                window.location.href = '/';
             }
-
-            // Check here if response.code 200 success and a Session Cookie exists, then redirect.
-            // window.location.href = '/';
         })
         .catch((ex) => {
-            // Exception occurred, being handled in CodeHandler.jsx
-
             handleErrorCode(ex.response);
         })
     }

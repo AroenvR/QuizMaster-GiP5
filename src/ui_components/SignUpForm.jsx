@@ -3,10 +3,11 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-import { signUp } from '../axios_services/UserService';
-import { handleErrorCode } from '../axios_services/CodeHandler';
+import { signUp } from '../../axios_services/UserService';
+import { handleErrorCode } from '../../axios_services/CodeHandler';
 
 const SignUpForm = () => {
+    // Hooks!
     const [validated, setValidated] = useState(false);
     const [input, setInput] = useState(null);
 
@@ -17,13 +18,14 @@ const SignUpForm = () => {
         await signUp(email, username, password).then((resp) => {
             // User data has been sent to the backend, redirecting if succesfsful (successful, I can't type apparently).
 
+            // If user was successfully created, redirect to home.
             if (resp.status === 201) {
                 window.location.href = '/';
             }
         })
         .catch((ex) => {
+            
             // Exception occurred, being handled in CodeHandler.jsx
-
             handleErrorCode(ex.response);
         })
     }    
