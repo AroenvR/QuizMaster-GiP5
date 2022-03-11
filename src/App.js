@@ -18,7 +18,7 @@ import Footer from "./ui_components/Footer";
 
 function App() {
   let logCookie = Cookies.get("loggedIn");
-  let jCookie = Cookies.get("JSESSIONID");
+  let jCookie = Cookies.get("JSESSIONID"); //IT WORKS NOW!
 
   console.log(jCookie)
   console.log(document.cookie)
