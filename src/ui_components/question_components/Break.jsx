@@ -1,8 +1,9 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 
 import Button from 'react-bootstrap/Button';
 
+// Break == Break between Questions during a Quiz. This is defined by dto.break === true.
+// A button needs to be present to send a request for the next question.
 const Break = () => {
 
     const sendToBackend = () => {

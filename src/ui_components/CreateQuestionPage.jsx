@@ -6,6 +6,10 @@ import CreateMultipleChoice from './question_components/CreateMultipleChoice';
 import CreateTrueOrFalse from './question_components/CreateTrueOrFalse';
 import CreateFillInTheBlank from './question_components/CreateFillInTheBlank';
 
+
+// User wants to create a custom Quiz Question.
+// Sends a POST to create Question with a CreateQuestionDTO.
+// Sending of this POST is handled by the HandleQuestionDTO component. 
 const CreateQuestionPage = () => {
     const [dropdown, setDropdown] = useState("Multiple Choice");
 
@@ -22,10 +26,8 @@ const CreateQuestionPage = () => {
         setDropdown("Fill in the Blank");
     }
 
-    // This function handles which component to render depending on the text of the dropdown button.
     const renderQuestionForm = () => { 
         switch(dropdown) {
-
             case "Multiple Choice":
                 return (
                     <CreateMultipleChoice />
@@ -60,7 +62,10 @@ const CreateQuestionPage = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                        <Dropdown.Item onClick={handleMultipleChoice}>Multiple Choice</Dropdown.Item>
+                        {/* A function passed WITHOUT brackets is a REFERENCE to a function. WITH brackets it would trigger every time the Component is rendered! (Thnk of a handleClick) */}
+                        {/* A method passed with brackets () is a direct call upon the function. */}
+                        {/* That's why you need brackets for functions that generate HTML and no brackets for functions that should React to a trigger. Pun intended? */}
+                        <Dropdown.Item onClick={handleMultipleChoice}>Multiple Choice</Dropdown.Item> 
                         <Dropdown.Item onClick={handleTrueOrFalse}>True or False</Dropdown.Item>
                         <Dropdown.Item onClick={handleFillInTheBlank}>Fill in the Blank</Dropdown.Item>
                 </Dropdown.Menu>

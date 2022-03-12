@@ -7,6 +7,7 @@ import TrueOrFalse from "./question_components/TrueOrFalse"
 
 import { getNext } from "../axios_services/QuestionService";
  
+// Recreating a DTO to give as properties to the question useState hook.
 let QuestionDTO = {
     question_id: null,
     answers: [],
@@ -18,11 +19,18 @@ let QuestionDTO = {
     topic : null
 }
 
+// This page manages a player playing a Quiz.
+// Backend sends QuestionDTO's with type and break properties.
+// Player gets a question or a break depending on that property.
+// Any click is a request to the backend with the previous question's answer string as value. The return from backend will be a new Question.
+// Children already get a DTO so POSTing will be handled by them. It's also a very easy post to handle.
+// Child Components are from question_components folder. 
 const QuizQuestion = () => {
     useEffect(() => { getQuestion() }, []);
     const [loading, setLoading] = useState(true);
     const [question, setQuestion] = useState(QuestionDTO);
 
+    // Request a Question or Break from the Backend to render. Sends an answer_string to the backend.
     async function getQuestion() {
         setLoading(true);
 

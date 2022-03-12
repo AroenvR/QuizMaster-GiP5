@@ -2,6 +2,8 @@ import React from 'react';
 
 import Modal from 'react-bootstrap/Modal';
 
+// This shows a Question that was selected for viewing with (props) from CreateQuizForm.jsx.
+// Host is creating a quiz => selects a topic, selects a question to add to their quiz and now want to see the properties of that question.
 const QuestionModal = (props) => {
 
   // Change question's "type" int to a string.

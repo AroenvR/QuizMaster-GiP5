@@ -15,7 +15,8 @@ let questionDTO = {
     topic: null
 }
 
-function MultipleChoice(props) {
+// Backend sent a Question of type 3. This is read by (props) from CreateQuestionPage.jsx
+function TrueOrFalse(props) {
     useEffect(() => { setQuestion(props.value) });
     const [question, setQuestion] = useState(questionDTO);
     const [chosenAnswer, setChosenAnswer] = useState();
@@ -56,5 +57,5 @@ function MultipleChoice(props) {
     )
 }
 
-export default MultipleChoice
+export default TrueOrFalse
 

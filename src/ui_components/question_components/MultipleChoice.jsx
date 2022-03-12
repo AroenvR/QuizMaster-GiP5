@@ -15,6 +15,7 @@ let questionDTO = {
     topic: null
 }
 
+// Backend sent a Question of type 1. This is read by (props) from CreateQuestionPage.jsx
 function MultipleChoice(props) {
     useEffect(() => { setQuestion(props.value) });
     const [question, setQuestion] = useState(questionDTO);

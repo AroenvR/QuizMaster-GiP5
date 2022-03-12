@@ -4,43 +4,39 @@ import { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-//Recreating the outgoing DTO to have selectable variables in the 'question' hook.
-let createQuestionDTO = {
-    answers: [],
-    type: 3,
-    question_string: null,
-    description: null,
-    topic: null
-}
+import { postQuestion, createQuestionDTO } from "./HandleQuestionDTO";
 
+// Creation for a Question of type 2: "True or False".
 function CreateTrueOrFalse() {
-    const [validated, setValidated] = useState(false);
-    const [question, setQuestion] = useState(createQuestionDTO);
+    const [validated, setValidated] = useState(false); // Form validator.
+    const [questionDTO, setQuestionDTO] = useState(createQuestionDTO); //DTO object is constructed in HandleQuestionDTO component.
+
+    // Set question type.
+    useEffect(() => { setQuestionDTO({ ...questionDTO, type: 2 }) }, []);
     
-    // Backend
+    // Checking form before sending DTO to the next handler.
     async function handleSubmit(event) {
-        const form = event.currentTarget;
-
-        console.log(question);
-
         event.preventDefault();
 
-        // Block if form's Validity is false.
-        if (form.checkValidity() === false) {
-            event.stopPropagation();
-        }
-
+        // Reset Form validation.
         setValidated(true);
 
-        // Send to Axios.
+        console.log(questionDTO);
+
+        // Send to HandleQuestionDTO component.
+        if (questionDTO.answers instanceof Array) {
+            alert("Please select a true or false.");
+            return;
+        }
+        await postQuestion(questionDTO);
     }
 
     // Input handlers
     const handleTopicInput = (event) => {
         const { name, value } = event.currentTarget;
 
-        setQuestion({
-            ...question,
+        setQuestionDTO({
+            ...questionDTO,
             topic: value,
         });
     }
@@ -48,8 +44,8 @@ function CreateTrueOrFalse() {
     const handleDescriptionInput = (event) => {
         const { name, value } = event.currentTarget;
 
-        setQuestion({
-            ...question,
+        setQuestionDTO({
+            ...questionDTO,
             description: value,
         });
     }
@@ -57,26 +53,11 @@ function CreateTrueOrFalse() {
     const handleQuestionStringInput = (event) => {
         const { name, value } = event.currentTarget;
 
-        setQuestion({
-            ...question,
-            question_string: value,
+        setQuestionDTO({
+            ...questionDTO,
+            questionString: value,
         });
     }
-
-    // These should be removable, check this when you get around to it.
-    // const setAnswerToTrue = () => {
-    //     setQuestion({
-    //         ...question,
-    //         answers: "true"
-    //     })
-    // }
-
-    // const setAnswerToFalse = () => {
-    //     setQuestion({
-    //         ...question,
-    //         answers: "false"
-    //     })
-    // }
 
     //HTML from here on out.
     return (
@@ -121,9 +102,9 @@ function CreateTrueOrFalse() {
                 </Form.Group>
                 
                 <div id="True-Or-False-Btn-Div" alt="Div containing the two 'true' and 'false' buttons.">
-                    <Button variant="success" onClick={() => setQuestion({ ...question, answers: "true" })}>True</Button>
+                    <Button variant="success" onClick={() => setQuestionDTO({ ...questionDTO, answers: "true" })}>True</Button>
 
-                    <Button variant="success" onClick={() => setQuestion({ ...question, answers: "false" })}>False</Button>
+                    <Button variant="success" onClick={() => setQuestionDTO({ ...questionDTO, answers: "false" })}>False</Button>
                 </div>
 
                 <Button 

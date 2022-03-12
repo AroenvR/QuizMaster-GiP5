@@ -17,6 +17,7 @@ let questionDTO = {
     topic: null
 }
 
+// Backend sent a Question of type 3. This is read by (props) from CreateQuestionPage.jsx
 function FillInTheBlank(props) {
     useEffect(() => { setQuestion(props.value) });
     const [question, setQuestion] = useState(questionDTO);

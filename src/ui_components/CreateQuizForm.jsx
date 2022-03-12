@@ -15,7 +15,7 @@ import { handleErrorCode } from '../axios_services/CodeHandler';
 
 let modalInitializer = {
     answers: [1, 2, 3],
-    type : null,
+    type : 0,
     questionString : null,
     description : null,
 }
@@ -33,7 +33,7 @@ const CreateQuizForm = () => {
     const [modalQuestion, setModalQuestion] = useState(modalInitializer);
 
 
-    // functions for DateTimePicker & hook initializer for start time
+    // functions for DateTimePicker & hook initializer for startTime
     // maxDate == date + 1 year
     const maxDate = (date) => {
         const newDate = new Date(date);
@@ -128,6 +128,7 @@ const CreateQuizForm = () => {
                 // TODO: If you ever come back around to this, change quizTitle to backend's title and not the frontend one. Minor difference, but it's a difference.
                 // What? I make notes to myself referring to myself as you. Don't judge me!
                 // Also, for MVP an alert is fine but if YOU got time, then change this to a modal.
+                // Dear reader, it is now the next day and I apologise for being so weird. I was very tired.
             }
         })
         .catch((ex) => {

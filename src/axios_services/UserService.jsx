@@ -13,7 +13,7 @@ export function login(email, password) {
 }
 
 export function logout() {
-    if(cookieChecker) {
+    if(cookieChecker()) {
         Cookies.remove(jCookieName);
     }
 
@@ -30,14 +30,12 @@ export function signUp(email, username, password) {
 
 export function cookieChecker() {
     let jCookie = Cookies.get(jCookieName);
-    let cookieCheck = false;
 
     if (typeof jCookie !== "undefined") {
-      cookieCheck = true;
-      return cookieCheck;
+      return true;
     }
-    return cookieCheck;
-  }
+    return false;
+}
 
 /*  SignupDTO
     {
