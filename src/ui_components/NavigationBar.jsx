@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import Cookies from 'js-cookie';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
@@ -12,6 +11,7 @@ import { getQuizByCode } from '../axios_services/QuizService';
 import { logout } from '../axios_services/UserService';
 import logo from '../img/Quiz-Masters-Logo.png';
 import { handleErrorCode } from '../axios_services/CodeHandler';
+import { cookieChecker } from "../axios_services/UserService";
 
 const NavigationBar = () => {
     let searchRef = useRef(null);
@@ -39,17 +39,15 @@ const NavigationBar = () => {
         fetchQuizByCode(searchRef.current.value);
     }
 
-    // Setting cookie for rendering login / logout buttons.
+    // Handle logging out.
     async function handleLogout() {
-        Cookies.set("loggedIn", "false");
-
         await logout();
     }
 
     // Check with cookie which buttons to render.
     const renderLoginLogout = () => {
         
-        if (Cookies.get("loggedIn") == "false") { //TODO: Get this to check for cookie.
+        if (cookieChecker() === false) { //TODO: Get this to check for cookie.
             return (
                 <div id="Login-And-Sign-Up-Btns-Div" alt="Div containing the login and signup buttons.">
                     <Nav.Link href="login"><Button variant="outline-primary">Log in</Button></Nav.Link>

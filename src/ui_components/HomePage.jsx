@@ -1,17 +1,14 @@
-import Cookies from 'js-cookie';
-
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
+import { cookieChecker } from '../axios_services/UserService';
 
 const HomePage = () => {
-    let logCookie = Cookies.get("loggedIn");
-
     return (
         <div id="Home-Page-Div" alt="Div containing the buttons form and welcome message.">
             <div id="Home-Page-h-Div">
                 <h3>Welcome to Quiz Masters!</h3>
                 { 
-                    logCookie === "false" && (
+                    cookieChecker() === false && (
                         <h5>Please <a href="/login">log in</a> to enjoy the features of our website.</h5>
                     )
                 }

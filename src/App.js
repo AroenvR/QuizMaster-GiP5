@@ -4,7 +4,8 @@ import {
 } from "react-router-dom";
 
 import './App.css';
-import Cookies from 'js-cookie';
+
+import { cookieChecker } from "./axios_services/UserService";
 
 import NavigationBar from "./ui_components/NavigationBar";
 import HomePage from "./ui_components/HomePage";
@@ -17,15 +18,9 @@ import CreateQuestionPage from "./ui_components/CreateQuestionPage";
 import Footer from "./ui_components/Footer";
 
 function App() {
-  let logCookie = Cookies.get("loggedIn");
-  let jCookie = Cookies.get("JSESSIONID"); //IT WORKS NOW!
-
-  console.log(jCookie)
-  console.log(document.cookie)
-
   // Checking which routes to allow before rendering.
   const checkAuthentication = () => {
-    if(logCookie === "true") {
+    if(cookieChecker()) {
       return (
         <div id="Application-Div">
           <NavigationBar />

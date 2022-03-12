@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import Cookies from 'js-cookie';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 import { login } from '../axios_services/UserService';
 import { handleErrorCode } from '../axios_services/CodeHandler';
+
+import { cookieChecker } from '../axios_services/UserService';
 
 const LoginForm = () => {
     const [validated, setValidated] = useState(false);
@@ -18,10 +19,7 @@ const LoginForm = () => {
         await login(email, password).then((resp) => {
             // Login data has been sent to the backend, handle the returns here. HTTP codes and possible objects.
 
-            if (resp.status === 200) {
-                Cookies.set("loggedIn", "true")
-                localStorage.setItem("loggedIn", "true");
-
+            if (resp.status === 200 && cookieChecker()) {
                 window.location.href = '/';
             }
         })

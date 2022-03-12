@@ -1,5 +1,9 @@
 import http from "./Axios";
 
+import Cookies from 'js-cookie';
+
+let jCookieName = "JSESSIONID";
+
 export function login(email, password) {
     return http.get("/login", {
         headers: {
@@ -9,6 +13,10 @@ export function login(email, password) {
 }
 
 export function logout() {
+    if(cookieChecker) {
+        Cookies.remove(jCookieName);
+    }
+
     return http.get("/logout");
 }
 
@@ -19,6 +27,17 @@ export function signUp(email, username, password) {
         password: password,
     });
 }
+
+export function cookieChecker() {
+    let jCookie = Cookies.get(jCookieName);
+    let cookieCheck = false;
+
+    if (typeof jCookie !== "undefined") {
+      cookieCheck = true;
+      return cookieCheck;
+    }
+    return cookieCheck;
+  }
 
 /*  SignupDTO
     {
