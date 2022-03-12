@@ -3,47 +3,32 @@ import { useState, useEffect } from 'react';
 
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
 
-//Recreating the incoming DTO to have selectable variables in the 'question' hook.
-let questionDTO = {
-    question_id: null,
-    answers: [],
-    type: null,
-    quiz_title: null,
-    question_string: null,
-    description: null,
-    break: null,
-    topic: null
-}
+import { questionDTO } from '../QuizQuestion';
 
 // Backend sent a Question of type 3. This is read by (props) from CreateQuestionPage.jsx
 function FillInTheBlank(props) {
-    useEffect(() => { setQuestion(props.value) });
+    // Setting question properties by import from QuizQuestion.jsx
     const [question, setQuestion] = useState(questionDTO);
-    const [chosenAnswer, setChosenAnswer] = useState(null);
+
+    // Setting question values from props passed by parent.
+    useEffect(() => { setQuestion(props.value) });
 
     const handleInput = (event) => {
         const input = event.target.value
-        setChosenAnswer(input);
-    }
-
-    const sendToBackend = () => {
-        if (chosenAnswer !== null && chosenAnswer !== "") {
-            console.log(chosenAnswer)
-
-            //TODO: Send to Axios, baby!
-        } 
+        
+        // Setting answer in localStorage to pass back to parent. (React does not support passing to parent)
+        localStorage.setItem("answer", input);
     }
 
     //HTML from here on out.
     return (
         <div id="Fill-In-The-Blank-Div" alt="Div containing the 'fill in the blank' form.">
-            <h1>{question.quiz_title}</h1>
+            <h1>{question.quizTitle}</h1>
 
             <p className='question-description'>{question.description}</p>
 
-            <h3 className='question-string'>{question.question_string}</h3>
+            <h3 className='question-string'>{question.questionString}</h3>
             
             <Form id='Fill-In-The-Answer'>
                 <FormControl
@@ -54,8 +39,6 @@ function FillInTheBlank(props) {
                     onChange={handleInput}
                 />
             </Form>
-            
-            <Button className='next-question' variant='success' onClick={sendToBackend}>Next Question!</Button>
         </div>
     )
 }

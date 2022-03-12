@@ -5,7 +5,7 @@ export function handleErrorCode(response) {
 
     switch(response.status) {
         case 400: // bad request
-            alert(response.data);
+            alert(response.data.error); // response.data for navigation bar's join quiz. Forgot who needed .error
             return;
         
         case 401: // Unauthorized 

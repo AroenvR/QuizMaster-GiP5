@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import { cookieChecker } from '../axios_services/UserService';
 
+// The home page of our app. URL == "/"
 const HomePage = () => {
     return (
         <div id="Home-Page-Div" alt="Div containing the buttons form and welcome message.">

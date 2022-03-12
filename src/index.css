@@ -105,10 +105,17 @@ code {
 }
 
 #Quiz-Question-Container {
+  text-align: center;
   max-width: 40rem;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2rem;
+}
+#Next-Question-Btn {
+  display: block;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #Multiple-Choice-Div, #True-Or-False-Div, #Fill-In-The-Blank-Div, #Quiz-Break-Div {

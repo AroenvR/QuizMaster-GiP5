@@ -18,6 +18,7 @@ import CreateQuestionPage from "./ui_components/CreateQuestionPage";
 import Footer from "./ui_components/Footer";
 
 function App() {
+
   // Checking which routes to allow before rendering.
   const checkAuthentication = () => {
     if(cookieChecker()) {

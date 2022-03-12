@@ -1,4 +1,3 @@
-import { data } from "jquery";
 import { createQuestion } from "../../axios_services/QuestionService";
 import { handleErrorCode } from '../../axios_services/CodeHandler';
 
@@ -14,7 +13,6 @@ export let createQuestionDTO = {
 function validateDTO(dto) {
     
     // Checking for false values
-
     if(dto.questionString === null || dto.questionString.trim() === "") {
         return false;
     }
@@ -46,7 +44,7 @@ export async function postQuestion(dto) {
 
     if(validateDTO(dto)) {
 
-        //Send to Axios & handle possible returns
+        //Send to the backend.
         await createQuestion(dto).then((resp) => {
             if(resp.status === 201) {
                 alert("Your question " + dto.questionString + " was successfully created!");

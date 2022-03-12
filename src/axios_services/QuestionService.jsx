@@ -1,7 +1,7 @@
 import http from "../axios_services/Axios";
 
-export function getNext(memberId, quizId) {
-    return http.get("/questions/member?=" + memberId + "quiz?=" + quizId);
+export function getNext(answerString) {
+    return http.get("/questions", answerString);
 }
 
 export function createQuestion(object) {
@@ -19,6 +19,10 @@ export function deleteQuestion(questionId) {
 // MOCK data
 export function getAllQuestionsForTopic(topic) {
     return http.get("/questions/" + topic);
+}
+
+export function getFakeNext(answerString) {
+    return http.get("/fake-questions/?get-next=" + answerString);
 }
 
 /*  QuestionDTO
