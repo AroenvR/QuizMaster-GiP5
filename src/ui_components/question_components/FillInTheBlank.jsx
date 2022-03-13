@@ -12,16 +12,16 @@ function FillInTheBlank(props) {
     const [question, setQuestion] = useState(questionDTO);
 
     // Setting question values from props passed by parent.
-    useEffect(() => { setQuestion(props.value) });
+    useEffect(() => { setQuestion(props.value) }, [props.value]);
 
     const handleInput = (event) => {
         const input = event.target.value
         
         // Setting answer in localStorage to pass back to parent. (React does not support passing to parent)
-        localStorage.setItem("answer", input);
+        localStorage.setItem("answer", input); //TODO: Secure against injection.
     }
 
-    //HTML from here on out.
+    // HTML from here on out.
     return (
         <div id="Fill-In-The-Blank-Div" alt="Div containing the 'fill in the blank' form.">
             <h1>{question.quizTitle}</h1>

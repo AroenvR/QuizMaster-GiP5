@@ -11,7 +11,7 @@ import { handleErrorCode } from '../axios_services/CodeHandler';
 
 import LoginForm from './LoginForm';
 
-//POSSIBLE FUTURE EXPANSION! Currently not in use.
+//POSSIBLE FUTURE EXPANSION! (WIP) Currently not in use.
 const LoginModal = (props) => {
     console.log("modal");
     

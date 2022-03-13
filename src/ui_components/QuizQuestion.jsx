@@ -8,7 +8,7 @@ import MultipleChoice from "./question_components/MultipleChoice"
 import TrueOrFalse from "./question_components/TrueOrFalse"
 
 import { getNext, getFakeNext } from "../axios_services/QuestionService";
-import { handleErrorCode } from '../axios_services/CodeHandler';
+import { handleErrorCode } from '../util/CodeHandler';
  
 // Recreating a DTO to give as properties to the question and child component useState hooks.
 export const questionDTO = {
@@ -88,7 +88,6 @@ const QuizQuestion = () => {
     }
 
     // HTML from here on out.
-    // TODO: Stop working with the MockDTO's when possible.
     return (
         <div id="Quiz-Question-Container" alt="Div containing the questions">
             { renderQuestion() } 

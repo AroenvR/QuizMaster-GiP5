@@ -4,6 +4,10 @@ export function getNext(answerString) {
     return http.get("/questions", answerString);
 }
 
+export function getAllQuestionsForTopic(topic) {
+    return http.get("/questions/" + topic);
+}
+
 export function createQuestion(object) {
     return http.post("/questions", object);
 }
@@ -17,8 +21,8 @@ export function deleteQuestion(questionId) {
 }
 
 // MOCK data
-export function getAllQuestionsForTopic(topic) {
-    return http.get("/questions/" + topic);
+export function getAllFakeQuestionsForTopic(topic) {
+    return http.get("/fake-questions/" + topic);
 }
 
 export function getFakeNext(answerString) {

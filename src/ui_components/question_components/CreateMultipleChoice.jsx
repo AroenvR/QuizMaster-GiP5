@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 import { postQuestion, createQuestionDTO } from "./HandleQuestionDTO";
+import swal from 'sweetalert';
 
 // Creation for a Question of type 1: "Multiple Choice".
 function CreateMultipleChoice() {
@@ -27,7 +28,11 @@ function CreateMultipleChoice() {
         
         // Send to HandleQuestionDTO component.
         if (questionDTO.answers.length <= 3) {
-            alert("Please add at least 3 incorrect answers.");
+            swal({
+                title: "Too few answers",
+                text: "Please add at least 3 incorrect answers.",
+                icon: "warning"
+            })
             return;
         }
         await postQuestion(questionDTO);

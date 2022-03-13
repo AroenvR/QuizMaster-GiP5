@@ -16,7 +16,7 @@ function MultipleChoice(props) {
         const answer = event.target.labels[0].textContent;
 
         // Setting answer in localStorage to pass back to parent. (React does not support passing to parent)
-        localStorage.setItem("answer", answer);
+        localStorage.setItem("answer", answer); //TODO: Secure against injection.
     }
 
     //HTML from here on out.

@@ -3,8 +3,10 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+import swal from 'sweetalert';
+
 import { login } from '../axios_services/UserService';
-import { handleErrorCode } from '../axios_services/CodeHandler';
+import { handleErrorCode } from '../util/CodeHandler';
 
 import { cookieChecker } from '../axios_services/UserService';
 
@@ -24,7 +26,13 @@ const LoginForm = () => {
             }
         })
         .catch((ex) => {
-            ex.response.status == 401 ? alert(ex.response.data.error) : handleErrorCode(ex.response); // 401 from Spring Security gives a different error message than Jackson.
+            ex.response.status == 401 ? // 401 from Spring Security gives a different error message than Jackson.
+                swal({ 
+                    title: "Unauthorized / Forbidden",
+                    text: ex.response.data.error,
+                    icon: "warning"
+                }) :
+                handleErrorCode(ex.response);
         })
     }
 

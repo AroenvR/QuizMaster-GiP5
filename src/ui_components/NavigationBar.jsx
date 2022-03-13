@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button';
 import { getQuizByCode } from '../axios_services/QuizService';
 import { logout } from '../axios_services/UserService';
 import logo from '../img/Quiz-Masters-Logo.png';
-import { handleErrorCode } from '../axios_services/CodeHandler';
+import { handleErrorCode } from '../util/CodeHandler';
 import { cookieChecker } from "../axios_services/UserService";
 
 const NavigationBar = () => {

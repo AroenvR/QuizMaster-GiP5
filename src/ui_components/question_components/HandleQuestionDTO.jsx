@@ -1,5 +1,7 @@
+import swal from 'sweetalert';
+
 import { createQuestion } from "../../axios_services/QuestionService";
-import { handleErrorCode } from '../../axios_services/CodeHandler';
+import { handleErrorCode } from '../../util/CodeHandler';
 
 // Recreating createQuestionDTO to ensure similar properties as the other components.
 export let createQuestionDTO = {
@@ -26,12 +28,16 @@ function validateDTO(dto) {
         return false;
     }
     
-    // Checking for duplicate questions. (if statement is there because 'type 2 true-or-false' question.answers == string, not array)
+    // Checking for duplicate answers. (if statement is there because 'type 2 true-or-false' question.answers == string, not array)
     if(dto.answers instanceof Array) {
         let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index);
 
-        if (findDuplicates(dto.answers).length !== 0) { // Correct Answer is broken @ CreateMultipleChoice
-            alert("Please remove duplicate answers."); //This works
+        if (findDuplicates(dto.answers).length !== 0) {
+            swal({
+                title: "Duplicate answers",
+                text: "Please remove duplicate answers.",
+                icon: "warning"
+            })
             return false;
         }
     }
@@ -47,8 +53,14 @@ export async function postQuestion(dto) {
         //Send to the backend.
         await createQuestion(dto).then((resp) => {
             if(resp.status === 201) {
-                alert("Your question " + dto.questionString + " was successfully created!");
+                swal({
+                    title: "Created!",
+                    text: "Your question " + dto.questionString + " was successfully created!",
+                    icon: "success"
+                })
                 window.location.href = '/';
+                // TODO: If you ever come back around to this, change quizTitle to backend's title and not the frontend one. Minor difference, but it's a difference.
+                // CreateQuizForm's annoying developer found us!
             }
         })
         .catch((ex) => {

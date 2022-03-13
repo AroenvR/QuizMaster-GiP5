@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 import { signUp } from '../axios_services/UserService';
-import { handleErrorCode } from '../axios_services/CodeHandler';
+import { handleErrorCode } from '../util/CodeHandler';
 
 const SignUpForm = () => {
     // Hooks!

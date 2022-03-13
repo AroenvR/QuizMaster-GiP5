@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
+import swal from 'sweetalert';
+
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -25,7 +27,11 @@ function CreateTrueOrFalse() {
 
         // Send to HandleQuestionDTO component.
         if (questionDTO.answers instanceof Array) {
-            alert("Please select a true or false.");
+            swal({
+                title: "No answer selected",
+                text: "Please select true or false.",
+                icon: "warning"
+            })
             return;
         }
         await postQuestion(questionDTO);

@@ -17,6 +17,10 @@ import QuizQuestion from "./ui_components/QuizQuestion";
 import CreateQuestionPage from "./ui_components/CreateQuestionPage";
 import Footer from "./ui_components/Footer";
 
+// Note to XSS Security:
+// React's HTML rendering is (as far as I am currently aware) secure by default.
+// React auto-escapes <script></script> tags.
+// https://www.stackhawk.com/blog/react-xss-guide-examples-and-prevention/
 function App() {
 
   // Checking which routes to allow before rendering.

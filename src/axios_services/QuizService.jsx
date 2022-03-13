@@ -4,21 +4,9 @@ export function getQuizByCode(quizCode) {
     return http.get("/quizzes/?code=" + quizCode);
 }
 
-// export function getQuizById(quizId) {
-//     return http.get("/quizzes/" + quizId)
-// }
-
 export function createQuiz(object) {
     return http.post("/quizzes", object);
 }
-
-// export function editQuiz(id, object) {
-//     return http.put("/quizzes/" + id, object);
-// }
-
-// export function deleteQuiz(quizId) {
-//     return http.delete("/quizzes/" + quizId);
-// }
 
 /*  QuizDTO
     {

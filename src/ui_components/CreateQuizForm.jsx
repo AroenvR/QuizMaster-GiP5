@@ -5,12 +5,13 @@ import { getAllQuestionsForTopic } from "../axios_services/QuestionService";
 import { createQuiz } from '../axios_services/QuizService';
 
 import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars';
+import swal from 'sweetalert';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 import QuestionModal from './question_components/QuestionModal';
-import { handleErrorCode } from '../axios_services/CodeHandler';
+import { handleErrorCode } from '../util/CodeHandler';
 
 
 let modalInitializer = {
@@ -96,7 +97,11 @@ const CreateQuizForm = () => {
         // Checking for duplicate questions
         let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
         if (findDuplicates(questionIds).length !== 0) {
-            alert("Please remove duplicate questions.");
+            swal({
+                title: "Duplicate questions",
+                text: "Please remove duplicate questions.",
+                icon: "warning"
+            })
             return;
         }
 
@@ -113,22 +118,35 @@ const CreateQuizForm = () => {
             return;
         }
         if (quizDTO.questionIds.length === 0) {
-            alert("Please add some questions to your quiz.");
+            swal({
+                title: "Empty quiz",
+                text: "Please add some questions to your quiz.",
+                icon: "warning"
+            })
             return;
         }
         if (typeof quizDTO.endTime === 'undefined') {
-            alert("Please set an end time for your quiz.");
+            swal({
+                title: "No end time",
+                text: "Please set an end time for your quiz.",
+                icon: "warning"
+            })
             return;
         }
         
         // Sending DTO to the backend.
         await createQuiz(quizDTO).then((resp) => {
             if(resp.status === 201) {
-                alert("Quiz '" + quizDTO.quizTitle + "' has been created!"); 
+                swal({
+                    title: "Created!",
+                    text: "Quiz '" + quizDTO.quizTitle + "' has been created!",
+                    icon: "success"
+                })
                 // TODO: If you ever come back around to this, change quizTitle to backend's title and not the frontend one. Minor difference, but it's a difference.
                 // What? I make notes to myself referring to myself as you. Don't judge me!
                 // Also, for MVP an alert is fine but if YOU got time, then change this to a modal.
                 // Dear reader, it is now the next day and I apologise for being so weird. I was very tired.
+                // Days later: I found some time, alert has been changed to swal.
             }
         })
         .catch((ex) => {
