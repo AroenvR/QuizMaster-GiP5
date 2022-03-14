@@ -25,7 +25,7 @@ const NavigationBar = () => {
 
                 // If quizCode was found and Participant was successfuly created, go on to the quiz.
                 if(resp.status === 201) {
-                    window.location.href = '/quiz';
+                    // window.location.href = '/quiz';
                 }
             })
             .catch((ex) => {

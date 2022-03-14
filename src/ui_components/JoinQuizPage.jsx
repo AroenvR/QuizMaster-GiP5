@@ -17,12 +17,10 @@ const JoinQuizPage = () => {
     // Send quizCode to the backend.
     async function fetchQuizByCode(quizCode) {
 
-        // console.log(quizCode)
-
         // Check the input isn't empty before sending to the backend.
         if(quizCode !== "") {
+            // console.log(quizCode);
             await getQuizByCode(quizCode).then((resp) => {
-                console.log(resp)
 
                 if(resp.status === 201) {
                     window.location.href = '/quiz';
@@ -52,7 +50,7 @@ const JoinQuizPage = () => {
 
     return (
         <div id="Join-Page-Div" alt="Div for the code input field and join btn.">
-            <Form noValidate validated={validated} onSubmit={handleJoin} className='mt-3'>
+            <Form noValidate validated={validated} className='mt-3'>
 
                 <Form.Group className="mb-3" controlId="validationForCode">
                     <Form.Label style={style} alt="Styled the size of this text in the JoinQuizPage.jsx file.">Quiz Code:</Form.Label>
@@ -66,7 +64,7 @@ const JoinQuizPage = () => {
                     <Form.Control.Feedback type="invalid">Please fill in a code.</Form.Control.Feedback>
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button variant="primary" onClick={handleJoin}>
                     Join!
                 </Button>
             </Form>

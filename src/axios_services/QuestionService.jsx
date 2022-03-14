@@ -1,7 +1,7 @@
 import http from "../axios_services/Axios";
 
 export function getNext(answerString) {
-    return http.get("/questions", answerString);
+    return http.get("/questions/?get-next=" + answerString);
 }
 
 export function getAllQuestionsForTopic(topic) {
