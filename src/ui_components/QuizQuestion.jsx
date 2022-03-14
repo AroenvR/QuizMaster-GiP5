@@ -34,8 +34,10 @@ const QuizQuestion = () => {
     // Request a Question or Break from the Backend to render. Sends an answer_string to the backend.
     async function requestQuestion(answerToSend) {
         setLoading(true);
+
+        // console.log(answerToSend);
         
-        await getNext(answerToSend).then((resp) => { //TODO: Switch to actual controller when possible
+        await getFakeNext(answerToSend).then((resp) => { //TODO: Switch to actual controller when possible
             if(resp.status === 200) {
                 setQuestion(resp.data)
             }

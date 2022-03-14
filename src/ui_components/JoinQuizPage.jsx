@@ -17,15 +17,21 @@ const JoinQuizPage = () => {
     // Send quizCode to the backend.
     async function fetchQuizByCode(quizCode) {
 
-        await getQuizByCode(quizCode).then((resp) => {
+        // console.log(quizCode)
 
-            if(resp.status === 201) {
-                window.location.href = '/quiz';
-            }
-        })
-        .catch((ex) => {
-            handleErrorCode(ex.response);
-        })
+        // Check the input isn't empty before sending to the backend.
+        if(quizCode !== "") {
+            await getQuizByCode(quizCode).then((resp) => {
+                console.log(resp)
+
+                if(resp.status === 201) {
+                    window.location.href = '/quiz';
+                }
+            })
+            .catch((ex) => {
+                handleErrorCode(ex.response);
+            })
+        }
     }
 
     //When the submit button is clicked, data will be taken from the ref hook and sent through Axios to the backend.

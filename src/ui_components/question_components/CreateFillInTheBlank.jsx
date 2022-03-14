@@ -92,7 +92,7 @@ function CreateFillInTheBlank() {
     const oneField = (prop) => {
         return (
             <Form.Group className="mb-3" controlId={`${prop}`} key={prop}>
-                <Form.Label>{`Incorrect Answer ${prop + 1}`}</Form.Label>
+                <Form.Label>{`Extra answer ${prop + 1}`}</Form.Label>
                 <Form.Control
                     type="text"
                     className="text-center"
