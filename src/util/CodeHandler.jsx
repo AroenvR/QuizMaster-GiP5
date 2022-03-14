@@ -8,7 +8,7 @@ export function handleErrorCode(response) {
         case 400: // Bad request
             swal({
                 title: "Bad Request",
-                text: response.data, // response.data for navigation bar's join quiz. Forgot who needed .error
+                text: response.data,
                 icon: "error"
             }) 
             return;
@@ -19,9 +19,10 @@ export function handleErrorCode(response) {
                 title: "Unauthorized / Forbidden",
                 text: response.data,
                 icon: "warning"
-            })
-            Cookies.set("loggedIn", "false")
-            window.location.href = '/login';
+            }).then(() => {
+                Cookies.remove("JSESSIONID");
+                window.location.href = '/login';
+            });
             return;
 
         case 405: // Method Not Allowed
@@ -29,8 +30,10 @@ export function handleErrorCode(response) {
                 title: "Method Not Allowed",
                 text: response.data.error,
                 icon: "warning"
-            })
-            window.location.href = '/login';
+            }).then(() => {
+                Cookies.remove("JSESSIONID");
+                window.location.href = '/login';
+            });
             return;
 
         case 404: // Not found

@@ -6,6 +6,7 @@ import { createQuiz } from '../axios_services/QuizService';
 
 import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars';
 import swal from 'sweetalert';
+import moment from 'moment';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -74,6 +75,9 @@ const CreateQuizForm = () => {
     // GET questions by topic
     async function handleGetQuestions(topicName) {
 
+        // Encoding to UTF-8 for stability.
+        // topicName = encodeURI(topicName);
+
         await getAllQuestionsForTopic(topicName).then((resp) => { 
 
             if(resp.status === 200) {
@@ -133,14 +137,26 @@ const CreateQuizForm = () => {
             })
             return;
         }
+
+        // Formatting times. Slicing the last 6 characters "+01:00" for being GMT+1. Backend isn't handling this well.
+        quizDTO.startTime = moment(quizDTO.startTime).format().slice(0, -6); 
+        quizDTO.endTime = moment(quizDTO.endTime).format().slice(0, -6);
         
         // Sending DTO to the backend.
         await createQuiz(quizDTO).then((resp) => {
             if(resp.status === 201) {
+                console.log("passed here")
                 swal({
                     title: "Created!",
                     text: "Quiz '" + quizDTO.quizTitle + "' has been created!",
                     icon: "success"
+                })
+                .then(() => {
+                    swal({
+                        title: "Your code:",
+                        text: resp.data,
+                        icon: "success"
+                    })
                 })
 
                 // TODO: This will have a Quiz's CODE! I need to SWAL this!
@@ -154,7 +170,13 @@ const CreateQuizForm = () => {
             }
         })
         .catch((ex) => {
-            handleErrorCode(ex.response);
+            ex.response.status === 400 ? // Jackson sends a different error than the default for some reason.
+                swal({
+                    title: "Bad Request",
+                    text: ex.response.data.error,
+                    icon: "error"
+                }) :
+                    handleErrorCode(ex.response); 
         })
     }
 
