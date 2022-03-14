@@ -25,6 +25,8 @@ function CreateFillInTheBlank() {
         // Reset Form validation.
         setValidated(true);
 
+        console.log(questionDTO);
+
          // Send to HandleQuestionDTO component.
         await postQuestion(questionDTO);
     }

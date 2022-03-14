@@ -12,24 +12,29 @@ export let createQuestionDTO = {
     topic: null
 }
 
+// Validates the values of the given DTO.
 function validateDTO(dto) {
     
     // Checking for false values
     if(dto.questionString === null || dto.questionString.trim() === "") {
+        // console.log("Failed string");
         return false;
     }
     if(dto.description === null || dto.description.trim() === "") {
+        // console.log("Failed desc");
         return false;
     }
     if(dto.topic === null || dto.topic.trim() === "") {
+        // console.log("Failed topic");
         return false;
     }
     if(dto.answers instanceof Array && dto.answers.length === 0) { // answer checking for true-or-false happens there.
+        // console.log("Failed true-or-false");
         return false;
     }
     
     // Checking for duplicate answers. (if statement is there because 'type 2 true-or-false' question.answers == string, not array)
-    if(dto.answers instanceof Array) {
+    if(dto.answers instanceof Array && dto.answers.length > 1) {
         let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index);
 
         if (findDuplicates(dto.answers).length !== 0) {
@@ -47,18 +52,21 @@ function validateDTO(dto) {
 
 // Posting data from Create[QuestionType].jsx
 export async function postQuestion(dto) {
-
+    
     if(validateDTO(dto)) {
+        //TODO: Checking outgoing DTO's here
 
         //Send to the backend.
         await createQuestion(dto).then((resp) => {
+            
             if(resp.status === 201) {
                 swal({
                     title: "Created!",
                     text: "Your question " + dto.questionString + " was successfully created!",
                     icon: "success"
-                })
-                window.location.href = '/';
+                }) // .then on swal is after a button has been clicked.
+                .then(() => window.location.href = "/");
+
                 // TODO: If you ever come back around to this, change quizTitle to backend's title and not the frontend one. Minor difference, but it's a difference.
                 // CreateQuizForm's annoying developer found us!
             }

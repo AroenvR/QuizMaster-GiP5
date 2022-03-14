@@ -23,10 +23,8 @@ function CreateTrueOrFalse() {
         // Reset Form validation.
         setValidated(true);
 
-        console.log(questionDTO);
-
         // Send to HandleQuestionDTO component.
-        if (questionDTO.answers instanceof Array) {
+        if (!questionDTO.answers instanceof Array || questionDTO.answers.length === 0) {
             swal({
                 title: "No answer selected",
                 text: "Please select true or false.",
@@ -34,6 +32,7 @@ function CreateTrueOrFalse() {
             })
             return;
         }
+        
         await postQuestion(questionDTO);
     }
 
@@ -108,9 +107,9 @@ function CreateTrueOrFalse() {
                 </Form.Group>
                 
                 <div id="True-Or-False-Btn-Div" alt="Div containing the two 'true' and 'false' buttons.">
-                    <Button variant="success" onClick={() => setQuestionDTO({ ...questionDTO, answers: "true" })}>True</Button>
+                    <Button variant="success" onClick={() => setQuestionDTO({ ...questionDTO, answers: ["true"] })}>True</Button>
 
-                    <Button variant="success" onClick={() => setQuestionDTO({ ...questionDTO, answers: "false" })}>False</Button>
+                    <Button variant="success" onClick={() => setQuestionDTO({ ...questionDTO, answers: ["false"] })}>False</Button>
                 </div>
 
                 <Button 
