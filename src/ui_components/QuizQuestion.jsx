@@ -35,7 +35,7 @@ const QuizQuestion = () => {
     async function requestQuestion(answerToSend) {
         setLoading(true);
         
-        await getFakeNext(answerToSend).then((resp) => { //TODO: Switch to actual controller when possible
+        await getNext(answerToSend).then((resp) => { //TODO: Switch to actual controller when possible
             if(resp.status === 200) {
                 setQuestion(resp.data)
             }
