@@ -98,9 +98,13 @@ const CreateQuizForm = () => {
             questionIds.push(q.questionId);
         });
 
-        // Checking for duplicate questions
-        let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
-        if (findDuplicates(questionIds).length !== 0) {
+        // Code taken from: https://stackoverflow.com/questions/30735465/how-can-i-check-if-the-array-of-objects-have-duplicate-property-values
+        var seen = {};
+        var hasDuplicates = chosenQuestions.some(function (currentObject) {
+            return seen.hasOwnProperty(currentObject.quizId) || (seen[currentObject.quizId] = false);
+        })
+
+        if (hasDuplicates) {
             swal({
                 title: "Duplicate questions",
                 text: "Please remove duplicate questions.",
@@ -145,7 +149,7 @@ const CreateQuizForm = () => {
         // Sending DTO to the backend.
         await createQuiz(quizDTO).then((resp) => {
             if(resp.status === 201) {
-                console.log("passed here")
+                
                 swal({
                     title: "Created!",
                     text: "Quiz '" + quizDTO.quizTitle + "' has been created!",
