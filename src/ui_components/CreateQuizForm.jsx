@@ -17,9 +17,9 @@ import { handleErrorCode } from '../util/CodeHandler';
 
 let modalInitializer = {
     answers: [1, 2, 3],
-    type : 0,
-    questionString : null,
-    description : null,
+    type: 0,
+    questionString: null,
+    description: null,
 }
 
 const CreateQuizForm = () => {
@@ -33,7 +33,6 @@ const CreateQuizForm = () => {
     // Hooks for the QuestionModal
     const [modalShow, setModalShow] = useState(false);
     const [modalQuestion, setModalQuestion] = useState(modalInitializer);
-
 
     // functions for DateTimePicker & hook initializer for startTime
     // maxDate == date + 1 year
@@ -52,7 +51,7 @@ const CreateQuizForm = () => {
         return newDate;
     }
     // Hooks!
-    const [startTime, setStartTime] = useState(addOneHour(new Date));
+    const [startTime, setStartTime] = useState(addOneHour(new Date()));
     const [endTime, setEndTime] = useState();
 
     // Rerender component every time chosenQuestions gets updated
@@ -177,13 +176,7 @@ const CreateQuizForm = () => {
             }
         })
         .catch((ex) => {
-            ex.response.status === 400 ? // Jackson sends a different error than the default for some reason.
-                swal({
-                    title: "Bad Request",
-                    text: ex.response.data,
-                    icon: "error"
-                }) :
-                    handleErrorCode(ex.response); 
+            handleErrorCode(ex.response);
         })
     }
 

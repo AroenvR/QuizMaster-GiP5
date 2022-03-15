@@ -29,13 +29,15 @@ function validateDTO(dto) {
         return false;
     }
     if(dto.answers instanceof Array && dto.answers.length === 0) { // answer checking for true-or-false happens there.
+        // I'm not actually sure if this is still necessary since true-or-false is now an Array as well.
+        // Gotta check this when I have time. Doesn't really matter if it's here or not, though.
         // console.log("Failed true-or-false");
         return false;
     }
     
     // Checking for duplicate answers. (if statement is there because 'type 2 true-or-false' question.answers == string, not array)
     if(dto.answers instanceof Array && dto.answers.length > 1) {
-        let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index);
+        let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) !== index);
 
         if (findDuplicates(dto.answers).length !== 0) {
             swal({

@@ -7,7 +7,7 @@ import FillInTheBlank from "./question_components/FillInTheBlank";
 import MultipleChoice from "./question_components/MultipleChoice"
 import TrueOrFalse from "./question_components/TrueOrFalse"
 
-import { getNext, getFakeNext } from "../axios_services/QuestionService";
+import { getNext } from "../axios_services/QuestionService";
 import { handleErrorCode } from '../util/CodeHandler';
  
 // Recreating a DTO to give as properties to the question and child component useState hooks.
@@ -43,8 +43,10 @@ const QuizQuestion = () => {
             }
         })
         .catch((ex) => {
-            if (ex.response.status === 418) { //TEAPOT! Quiz finished. Redirect to Results
-                alert("Teapot!") //TODO: Results Page
+            if (ex.response.status === 418) { //TEAPOT! Quiz finished. Redirect to Results. 
+
+                // Our backend and I have a running joke with 418 Teapot, we implement it once in every project we make. <3
+                window.location.href = '/results'
             }
             handleErrorCode(ex.response);
         });

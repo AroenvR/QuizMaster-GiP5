@@ -5,9 +5,9 @@ export function getAll() {
 }
 
 // MOCK data:
-export function getAllFakes() {
-    return http.get("/fake-topics");
-}
+// export function getAllFakes() {
+//     return http.get("/fake-topics");
+// }
 
 /*  TopicDTO
     {

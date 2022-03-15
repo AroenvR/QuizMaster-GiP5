@@ -21,13 +21,13 @@ export function deleteQuestion(questionId) {
 }
 
 // MOCK data
-export function getAllFakeQuestionsForTopic(topic) {
-    return http.get("/fake-questions/" + topic);
-}
+// export function getAllFakeQuestionsForTopic(topic) {
+//     return http.get("/fake-questions/" + topic);
+// }
 
-export function getFakeNext(answerString) {
-    return http.get("/fake-questions/?get-next=" + answerString);
-}
+// export function getFakeNext(answerString) {
+//     return http.get("/fake-questions/?get-next=" + answerString);
+// }
 
 /*  QuestionDTO
     {
