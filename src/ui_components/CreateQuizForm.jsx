@@ -93,6 +93,8 @@ const CreateQuizForm = () => {
     async function handleCreateQuiz() {
         const questionIds = [];
 
+        console.log(chosenQuestions)
+
         // Creating array of questionId's from chosenQuestions array
         chosenQuestions.forEach(q => {
             questionIds.push(q.questionId);
@@ -101,7 +103,7 @@ const CreateQuizForm = () => {
         // Code taken from: https://stackoverflow.com/questions/30735465/how-can-i-check-if-the-array-of-objects-have-duplicate-property-values
         var seen = {};
         var hasDuplicates = chosenQuestions.some(function (currentObject) {
-            return seen.hasOwnProperty(currentObject.quizId) || (seen[currentObject.quizId] = false);
+            return seen.hasOwnProperty(currentObject.questionId) || (seen[currentObject.questionId] = false);
         })
 
         if (hasDuplicates) {
@@ -145,6 +147,8 @@ const CreateQuizForm = () => {
         // Formatting times. Slicing the last 6 characters "+01:00" for being GMT+1. Backend isn't handling this well.
         quizDTO.startTime = moment(quizDTO.startTime).format().slice(0, -6); 
         quizDTO.endTime = moment(quizDTO.endTime).format().slice(0, -6);
+
+        console.log(quizDTO)
         
         // Sending DTO to the backend.
         await createQuiz(quizDTO).then((resp) => {
@@ -157,14 +161,13 @@ const CreateQuizForm = () => {
                 })
                 .then(() => {
                     swal({
-                        title: "Your code:",
-                        text: resp.data,
+                        title: "Your quiz code",
+                        text: "You can invite people to play your Quiz with the following code: " + resp.data,
                         icon: "success"
                     })
                 })
 
                 // TODO: This will have a Quiz's CODE! I need to SWAL this!
-
 
                 // TODO: If you ever come back around to this, change quizTitle to backend's title and not the frontend one. Minor difference, but it's a difference.
                 // What? I make notes to myself referring to myself as you. Don't judge me!
@@ -177,7 +180,7 @@ const CreateQuizForm = () => {
             ex.response.status === 400 ? // Jackson sends a different error than the default for some reason.
                 swal({
                     title: "Bad Request",
-                    text: ex.response.data.error,
+                    text: ex.response.data,
                     icon: "error"
                 }) :
                     handleErrorCode(ex.response); 
