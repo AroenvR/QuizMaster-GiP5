@@ -8,7 +8,7 @@ export function createQuiz(object) {
     return http.post("/quizzes", object);
 }
 
-export function getAllQuizCodes() {
+export function getAllQuizzess() {
     return http.get("/quizzes/played")
 }
 

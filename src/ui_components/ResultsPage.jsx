@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { getResult } from '../axios_services/ResultService';
-import { getAllQuizCodes } from '../axios_services/QuizService';
+import { getAllQuizzess } from '../axios_services/QuizService';
 import { handleErrorCode } from '../util/CodeHandler';
 
 let resultsInitializer = {
@@ -14,17 +14,17 @@ let resultsInitializer = {
 }
 
 const ResultsPage = () => {
-    const [results, setResults] = useState();
-    const [quizCodes, setQuizCodes] = useState(resultsInitializer);
+    const [results, setResults] = useState(resultsInitializer);
+    const [quizzes, setQuizzes] = useState();
 
-    useEffect(() => { fetchQuizCodes() }, []);
+    useEffect(() => { fetchQuizzes() }, []);
 
-    async function fetchQuizCodes() {
-        await getAllQuizCodes().then((resp) => {
+    async function fetchQuizzes() {
+        await getAllQuizzess().then((resp) => {
             console.log(resp); // TODO: Remove
             
             if(resp.status === 200) {
-                setQuizCodes(resp.data);
+                setQuizzes(resp.data);
             }
         })
         .catch((ex) => {
@@ -47,12 +47,12 @@ const ResultsPage = () => {
     }
 
     const renderQuizCodes = () => {
-        return quizCodes.map((q, index) => {
+        return quizzes.map((q, index) => {
             return(
                 <p 
                     key={index}
-                    onClick={() => handleQuizSelection(q)}
-                >{q}</p>
+                    onClick={() => handleQuizSelection(q.quizCode)}
+                >{q.quizTitle}</p>
             );
         })
     }
