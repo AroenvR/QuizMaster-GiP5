@@ -4,15 +4,6 @@ import { getResult } from '../axios_services/ResultService';
 import { getAllQuizzess } from '../axios_services/QuizService';
 import { handleErrorCode } from '../util/CodeHandler';
 
-let resultsInitializer = {
-    answersCorrect: null, //int
-    totalAnswers: null, //int
-    minutesTaken: null, //int
-    secondsTaken: null, //int
-    place: null, //int
-    topTen: [] //of strings, sorted
-}
-
 let quizzesInitializer = [
     { quizTitle: null, quizCode: null},
     { quizTitle: null, quizCode: null}
@@ -28,15 +19,12 @@ const ResultsPage = () => {
     // Fetch all quizzes the currently logged in participant participated in.
     async function fetchQuizzes() {
         await getAllQuizzess().then((resp) => {
-            console.log(resp); // TODO: Remove
 
             if(resp.status === 200) {
                 setQuizzes(resp.data);
             }
         })
         .catch((ex) => {
-            console.log(ex);
-            console.log(ex.response)
             handleErrorCode(ex.response);
         })
     }
@@ -45,14 +33,12 @@ const ResultsPage = () => {
     async function fetchResults(quizCode) {
 
         await getResult(quizCode).then((resp) => {
-            console.log(resp); // TODO: Remove
 
             if(resp.status === 200) {
                 setResults(resp.data);
             }
         })
         .catch((ex) => {
-            console.log(ex.response)
             handleErrorCode(ex.response);
         })
     }
@@ -68,12 +54,6 @@ const ResultsPage = () => {
             );
         })
     }
-
-    const renderResultsForQuiz = () => {
-       
-    }
-
-    console.log(results); //TODO: remove
 
     // Render results of a quiz after it has been selected.
     const renderResults = () => {
@@ -135,24 +115,3 @@ const ResultsPage = () => {
 }
 
 export default ResultsPage;
-
-//TODO: remove
-// let mockDTO = {
-//     answersCorrect: 10,
-//     totalAnswers: 10,
-//     minutesTaken: 1,
-//     secondsTaken: 50,
-//     place: 5,
-//     topTen: ["Uderax", "Woot", "Lekkerbek", "JetMan", "Koala", "MathisCement", "Boggert", "Pim Weeters", "Cheerleader", "LaHorcrux"]
-// }
-
-// let mockDTOTwo = {
-//     answersCorrect: 8,
-//     totalAnswers: 10,
-//     minutesTaken: 5,
-//     secondsTaken: 50,
-//     place: 12,
-//     topTen: ["JetMan", "Koala", "Boggert", "Pim Weeters", "Uderax", "Woot", "MathisCement",  "Lekkerbek", "LaHorcrux", "Cheerleader"]
-// }
-
-// let mockCodes = ["Quiz 1", "Quiz 2", "Quiz 3", "Quiz 4", "Quiz 5", "Quiz 6", "Quiz 7", "Quiz 8", "Quiz 9", "Quiz 10"]
