@@ -52,6 +52,7 @@ const ResultsPage = () => {
             }
         })
         .catch((ex) => {
+            console.log(ex.response)
             handleErrorCode(ex.response);
         })
     }
@@ -100,7 +101,6 @@ const ResultsPage = () => {
     // Handle selection of a quiz title.
     const handleQuizSelection = (quizCode) => {
         fetchResults(quizCode);
-        console.log("Quiz: " + quizCode + " was clicked.")
     }
 
     // HTML from here on out.
