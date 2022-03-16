@@ -39,7 +39,7 @@ export function handleErrorCode(response) {
         case 404: // Not found
             swal({
                 title: "Not found",
-                text: response.data,
+                text: "" + response.data.error,
                 icon: "warning"
             })
             return;

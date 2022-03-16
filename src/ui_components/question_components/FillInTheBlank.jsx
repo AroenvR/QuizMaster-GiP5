@@ -18,7 +18,7 @@ function FillInTheBlank(props) {
         const input = event.target.value
         
         // Setting answer in localStorage to pass back to parent. (React does not support passing to parent)
-        localStorage.setItem("answer", input); //TODO: Secure against injection.
+        localStorage.setItem("answer", input); 
     }
 
     // HTML from here on out.

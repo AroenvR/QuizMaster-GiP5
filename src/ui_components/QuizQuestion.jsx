@@ -36,10 +36,8 @@ const QuizQuestion = () => {
     // Request a Question or Break from the Backend to render. Sends an answer_string to the backend.
     async function requestQuestion(answerToSend) {
         setLoading(true);
-
-        // console.log(answerToSend);
         
-        await getNext(answerToSend).then((resp) => { //TODO: Switch to actual controller when possible
+        await getNext(answerToSend).then((resp) => { 
             if(resp.status === 200) {
                 setQuestion(resp.data)
             }
@@ -48,6 +46,7 @@ const QuizQuestion = () => {
             if (ex.response.status === 418) { //TEAPOT! Quiz finished. Redirect to Results. 
 
                 // Our backend and I have a running joke with 418 Teapot, we implement it once in every project we make. <3
+                // Also, easter egg 2/2! Did you find the first one?
                 swal({
                     title: "Finished",
                     text: "You've finished the Quiz! \nYou can check your results from the home page.",

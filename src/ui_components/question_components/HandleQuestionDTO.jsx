@@ -56,7 +56,6 @@ function validateDTO(dto) {
 export async function postQuestion(dto) {
     
     if(validateDTO(dto)) {
-        //TODO: Checking outgoing DTO's here
 
         //Send to the backend.
         await createQuestion(dto).then((resp) => {
@@ -68,9 +67,6 @@ export async function postQuestion(dto) {
                     icon: "success"
                 }) // .then on swal is after a button has been clicked.
                 .then(() => window.location.href = "/");
-
-                // TODO: If you ever come back around to this, change quizTitle to backend's title and not the frontend one. Minor difference, but it's a difference.
-                // CreateQuizForm's annoying developer found us!
             }
         })
         .catch((ex) => {

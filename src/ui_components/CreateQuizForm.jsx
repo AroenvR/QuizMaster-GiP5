@@ -330,7 +330,7 @@ const handleSwal = (quizTitle, quizCode) => {
         title: "Created!",
         text: "Quiz '" + quizTitle + "' has been created!",
         icon: "success"
-    })
+    }) // after button click: 
     .then(() => {
         swal({
             title: "Your quiz code is: " + quizCode,
@@ -348,7 +348,7 @@ const handleSwal = (quizTitle, quizCode) => {
                     closeModal: false 
                 }
             } 
-        })
+        }) // after button click (depending on button's value):
         .then((val) => {
             switch (val) {
                 case "ok":

@@ -169,7 +169,8 @@ function CreateFillInTheBlank() {
 
                 <hr className='create-question-hr' />
                 <p>Add up to 9 additional correct answers <br /> (not required)</p>
-                { localStorage.setItem("Hello!", "Did you know: Coding has over 700 languages? The US only has about 350!") }
+                {   //Easter egg 1/2! Did you find the second one?
+                    localStorage.setItem("Hello!", "Did you know: Coding has over 700 languages? The US only has about 350!")   }
                 <hr />
 
                 {/* {

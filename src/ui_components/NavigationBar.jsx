@@ -47,7 +47,7 @@ const NavigationBar = () => {
     // Check with cookie which buttons to render.
     const renderLoginLogout = () => {
         
-        if (cookieChecker() === false) { //TODO: Get this to check for cookie.
+        if (cookieChecker() === false) { 
             return (
                 <div id="Login-And-Sign-Up-Btns-Div" alt="Div containing the login and signup buttons.">
                     <Nav.Link href="login"><Button variant="outline-primary">Log in</Button></Nav.Link>

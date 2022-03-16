@@ -14,11 +14,11 @@ function TrueOrFalse(props) {
     useEffect(() => { setQuestion(props.value) });
 
     const handleTrue = () => {
-        localStorage.setItem("answer", "true"); //TODO: Secure against injection.
+        localStorage.setItem("answer", "true"); 
     }
 
     const handleFalse = () => {
-        localStorage.setItem("answer", "false"); //TODO: Secure against injection.
+        localStorage.setItem("answer", "false");
     }
 
     //HTML from here on out.

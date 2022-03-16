@@ -13,12 +13,19 @@ let resultsInitializer = {
     topTen: [] //of strings, sorted
 }
 
+let quizzesInitializer = [ 
+    { quizTitle: null, quizCode: null}, 
+    { quizTitle: null, quizCode: null} 
+]
+
+// This page shows the results of all quizzes a player participated in.
 const ResultsPage = () => {
     const [results, setResults] = useState(resultsInitializer);
-    const [quizzes, setQuizzes] = useState();
+    const [quizzes, setQuizzes] = useState(quizzesInitializer);
 
     useEffect(() => { fetchQuizzes() }, []);
 
+    // Fetch all quizzes the currently logged in participant participated in.
     async function fetchQuizzes() {
         await getAllQuizzess().then((resp) => {
             console.log(resp); // TODO: Remove
@@ -28,10 +35,13 @@ const ResultsPage = () => {
             }
         })
         .catch((ex) => {
+            console.log(ex);
+            console.log(ex.response)
             handleErrorCode(ex.response);
         })
     }
 
+    // Fetch results for a selected quiz.
     async function fetchResults(quizCode) {
 
         await getResult(quizCode).then((resp) => {
@@ -46,7 +56,8 @@ const ResultsPage = () => {
         })
     }
 
-    const renderQuizCodes = () => {
+    // Render selectable quiz titles (selectability edited in the index.css file.)
+    const renderQuizTitles = () => {
         return quizzes.map((q, index) => {
             return(
                 <p 
@@ -57,8 +68,9 @@ const ResultsPage = () => {
         })
     }
 
-    console.log(results);
+    console.log(results); //TODO: remove
 
+    // Render results of a quiz after it has been selected.
     const renderResults = () => {
         if(results === undefined) return;
 
@@ -74,6 +86,7 @@ const ResultsPage = () => {
         );
     }
 
+    // Render the top 10 for a selected quiz.
     const renderTopTen = () => {
         if(results === undefined) return;
 
@@ -84,6 +97,7 @@ const ResultsPage = () => {
         })
     }
 
+    // Handle selection of a quiz title.
     const handleQuizSelection = (quizCode) => {
         fetchResults(quizCode);
         console.log("Quiz: " + quizCode + " was clicked.")
@@ -96,7 +110,7 @@ const ResultsPage = () => {
 
             <div id='Quiz-Code-Buttons-Div' alt="Div containing the Quiz Code buttons.">
                 <h1>Choose a quiz:</h1>
-                { renderQuizCodes() }
+                { renderQuizTitles() }
             </div>
 
             <div id='Quiz-Personal-Results-Div'>
@@ -113,6 +127,7 @@ const ResultsPage = () => {
 
 export default ResultsPage;
 
+//TODO: remove
 // let mockDTO = {
 //     answersCorrect: 10, 
 //     totalAnswers: 10, 
