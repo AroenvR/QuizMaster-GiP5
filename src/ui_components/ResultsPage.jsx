@@ -13,9 +13,9 @@ let resultsInitializer = {
     topTen: [] //of strings, sorted
 }
 
-let quizzesInitializer = [ 
-    { quizTitle: null, quizCode: null}, 
-    { quizTitle: null, quizCode: null} 
+let quizzesInitializer = [
+    { quizTitle: null, quizCode: null},
+    { quizTitle: null, quizCode: null}
 ]
 
 // This page shows the results of all quizzes a player participated in.
@@ -29,7 +29,7 @@ const ResultsPage = () => {
     async function fetchQuizzes() {
         await getAllQuizzess().then((resp) => {
             console.log(resp); // TODO: Remove
-            
+
             if(resp.status === 200) {
                 setQuizzes(resp.data);
             }
@@ -61,7 +61,7 @@ const ResultsPage = () => {
     const renderQuizTitles = () => {
         return quizzes.map((q, index) => {
             return(
-                <p 
+                <p className="Past-Quizzes"
                     key={index}
                     onClick={() => handleQuizSelection(q.quizCode)}
                 >{q.quizTitle}</p>
@@ -77,12 +77,12 @@ const ResultsPage = () => {
 
         return (
             <>
-                <h3>Your scores:</h3>
-                <p>{'Answers correct: ' + results.answersCorrect}</p>
-                <p>{'Total Answers: ' + results.totalAnswers}</p>
-                <p>{'Minutes taken: ' + results.minutesTaken}</p>
-                <p>{'Seconds taken: ' + results.secondsTaken}</p>
-                <p>{'Your place: ' + results.place}</p>
+                <h4 className="C-T-2"> Your score: </h4>
+                <p>{'Answers correct: '} <b>{results.answersCorrect}</b></p>
+                <p>{'Total Answers: '} <b>{results.totalAnswers}</b></p>
+                <p>{'Minutes taken: '} <b>{results.minutesTaken}</b></p>
+                <p>{'Seconds taken: '} <b>{results.secondsTaken}</b></p>
+                <p>{'Your place: '} <b>{results.place}</b></p>
             </>
         );
     }
@@ -105,21 +105,25 @@ const ResultsPage = () => {
 
     // HTML from here on out.
     return (
-        <div id="Results-Page-Div" alt="Div containing the results at the end of a quiz.">
-            <h1>Results:</h1>
+        <div id="Results-Page-Div" className="MB-3" alt="Div containing the results at the end of a quiz.">
+            <h1 className="text-center" id="Results-Title">Results:</h1>
 
-            <div id='Quiz-Code-Buttons-Div' alt="Div containing the Quiz Code buttons.">
-                <h1>Choose a quiz:</h1>
-                { renderQuizTitles() }
-            </div>
+            <div id="Grid-Container-Results">
+                <h1 className="C-T-1" > Choose a quiz:</h1>
+                <div id='Quiz-Code-Buttons-Div' alt="Div containing the Quiz Code buttons.">
+                    { renderQuizTitles() }
+                </div>
 
-            <div id='Quiz-Personal-Results-Div'>
-                { renderResults() }
-            </div>
 
-            <div id='Quiz-Top-Ten-Div'>
-                <h4>Top ten:</h4>
-                { renderTopTen() }
+                <div id='Quiz-Personal-Results-Div'>
+                    { renderResults() }
+                </div>
+
+
+                <div id='Quiz-Top-Ten-Div'>
+                    <h4 className="C-T-3"> Top 10:</h4>
+                    { renderTopTen() }
+                </div>
             </div>
         </div>
     );
@@ -129,19 +133,19 @@ export default ResultsPage;
 
 //TODO: remove
 // let mockDTO = {
-//     answersCorrect: 10, 
-//     totalAnswers: 10, 
-//     minutesTaken: 1, 
-//     secondsTaken: 50, 
+//     answersCorrect: 10,
+//     totalAnswers: 10,
+//     minutesTaken: 1,
+//     secondsTaken: 50,
 //     place: 5,
 //     topTen: ["Uderax", "Woot", "Lekkerbek", "JetMan", "Koala", "MathisCement", "Boggert", "Pim Weeters", "Cheerleader", "LaHorcrux"]
 // }
 
 // let mockDTOTwo = {
-//     answersCorrect: 8, 
-//     totalAnswers: 10, 
-//     minutesTaken: 5, 
-//     secondsTaken: 50, 
+//     answersCorrect: 8,
+//     totalAnswers: 10,
+//     minutesTaken: 5,
+//     secondsTaken: 50,
 //     place: 12,
 //     topTen: ["JetMan", "Koala", "Boggert", "Pim Weeters", "Uderax", "Woot", "MathisCement",  "Lekkerbek", "LaHorcrux", "Cheerleader"]
 // }

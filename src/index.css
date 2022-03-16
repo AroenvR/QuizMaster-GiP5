@@ -172,7 +172,7 @@ code {
   justify-content: space-between;
 }
 
-#Create-Quiz-Form {
+#Create-Quiz-Form, #Grid-Container-Results {
   margin: 2rem auto 0 auto;
   max-width: 60rem;
   display: grid;
@@ -185,40 +185,55 @@ code {
   text-align: center;
 }
 
-#Create-Quiz-Form>h1 {
+#Create-Quiz-Form>h1, #Results-Page-Div>#Grid-Container-Results>h1.C-T-1 {
   grid-area: field1;
   align-self: center;
 }
 
-#Create-Quiz-Form>h3 {
+#Create-Quiz-Form>h3, #Results-Page-Div>#Grid-Container-Results>h4.C-T-2 {
   grid-area: field2;
   align-self: center;
 }
 
-#Create-Quiz-Form>h4 { 
+#Create-Quiz-Form>h4, #Results-Page-Div>#Grid-Container-Results>h4.C-T-3 {
   grid-area: field3;
   align-self: center;
 }
 
-#Create-Quiz-Current-Questions {
+#Results-Page-Div>#Grid-Container-Results h4.C-T-2,  #Results-Page-Div>#Grid-Container-Results h4.C-T-3{
+  margin: 0 0 1.5rem 0;
+}
+
+#Results-Title, #Results-Page-Div>#Grid-Container-Results>h1.C-T-1 , .Past-Quizzes, #Results-Page-Div>#Grid-Container-Results h4.C-T-2,  #Results-Page-Div>#Grid-Container-Results h4.C-T-3 {
+  font-weight: bold;
+}
+
+#Quiz-Personal-Results-Div{
+  text-align: left;
+}
+
+#Create-Quiz-Current-Questions,
+#Create-Quiz-Topics-Container,
+#Create-Quiz-Questions-By-Topic,
+#Quiz-Code-Buttons-Div,
+#Quiz-Personal-Results-Div,
+#Quiz-Top-Ten-Div
+{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+
+#Create-Quiz-Current-Questions, #Quiz-Code-Buttons-Div {
   grid-area: field4;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
 }
 
-#Create-Quiz-Topics-Container {
+#Create-Quiz-Topics-Container, #Quiz-Personal-Results-Div {
   grid-area: field5;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
 }
 
-#Create-Quiz-Questions-By-Topic {
+#Create-Quiz-Questions-By-Topic, #Quiz-Top-Ten-Div {
   grid-area: field6;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
 }
 
 #Create-Quiz-Page {
@@ -230,8 +245,18 @@ code {
   padding: 0.2rem 0.5rem;
   margin: 0;
 }
+
+#Results-Title {
+  Margin-top: 1.5rem;
+}
+
+.current-question-p, .Past-Quizzes{
+  padding: 0.5rem 1rem;
+  margin-bottom: 0;
+}
+
 /* Could be the p:hover select is wrong here. */
-#Create-Quiz-Form p:hover {
+#Create-Quiz-Form p:hover, .Past-Quizzes:hover {
   background: #aae1fa;
   border: #003469;
   border-style: solid;
@@ -239,9 +264,10 @@ code {
   font-size: 1.15rem;
   cursor: pointer;
 }
-#Quiz-Title-Label {
+#Quiz-Title-Label, #Results-Title {
   font-size: 3rem;
 }
+
 #validationForTitle {
   margin-left: auto;
   margin-right: auto;
