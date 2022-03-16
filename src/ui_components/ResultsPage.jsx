@@ -20,7 +20,7 @@ let quizzesInitializer = [
 
 // This page shows the results of all quizzes a player participated in.
 const ResultsPage = () => {
-    const [results, setResults] = useState(resultsInitializer);
+    const [results, setResults] = useState(null);
     const [quizzes, setQuizzes] = useState(quizzesInitializer);
 
     useEffect(() => { fetchQuizzes() }, []);
@@ -69,6 +69,10 @@ const ResultsPage = () => {
         })
     }
 
+    const renderResultsForQuiz = () => {
+       
+    }
+
     console.log(results); //TODO: remove
 
     // Render results of a quiz after it has been selected.
@@ -113,17 +117,18 @@ const ResultsPage = () => {
                 <div id='Quiz-Code-Buttons-Div' alt="Div containing the Quiz Code buttons.">
                     { renderQuizTitles() }
                 </div>
+                { results !== null && (
+                        <div id='Quiz-Personal-Results-Div'>
+                            { renderResults() }
+                        </div>
+                    )}
 
-
-                <div id='Quiz-Personal-Results-Div'>
-                    { renderResults() }
-                </div>
-
-
-                <div id='Quiz-Top-Ten-Div'>
-                    <h4 className="C-T-3"> Top 10:</h4>
-                    { renderTopTen() }
-                </div>
+                { results !== null && (
+                        <div id='Quiz-Top-Ten-Div'>
+                            <h4 className="C-T-3"> Top 10:</h4>
+                            { renderTopTen() }
+                        </div>
+                    )}
             </div>
         </div>
     );
