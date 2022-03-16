@@ -73,3 +73,8 @@ function App() {
 }
 
 export default App;
+
+// Footnote, extensions I used on Visual Studio:
+// Auto Rename Tag
+// Bracket Pair Colorizer
+// Please let me know if you know of any other useful ones.

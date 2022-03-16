@@ -1,16 +1,16 @@
 import http from "../axios_services/Axios";
 
-export function getResult(memberId, quizId) {
-    return http.get("/results/member?=" + memberId + "quiz?=" + quizId);
+export function getResult() {
+    return http.get("/results?code=" + "ABC123"); //TODO: Check this URL.
 }
 
-export function getTotalQuizScore(quizId) {
-    return http.get("/score/" + quizId)
-}
+// export function getTotalQuizScore(quizId) {
+//     return http.get("/score/" + quizId)
+// }
 
-export function postResult(object) {
-    return http.post("/results", object);
-}
+// export function postResult(object) {
+//     return http.post("/results", object);
+// }
 
 // export function editResult(id, object) {
 //     return http.put("/results/" + id, object);
