@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { getResult } from '../axios_services/ResultService';
+import { getAllQuizCodes } from '../axios_services/QuizService';
 import { handleErrorCode } from '../util/CodeHandler';
 
 let resultsInitializer = {
@@ -14,38 +15,35 @@ let resultsInitializer = {
 
 const ResultsPage = () => {
     const [results, setResults] = useState();
-    const [quizCodes, setQuizCodes] = useState(mockCodes);
+    const [quizCodes, setQuizCodes] = useState(resultsInitializer);
 
     useEffect(() => { fetchQuizCodes() }, []);
 
     async function fetchQuizCodes() {
-        // await getAllQuizCodes().then((resp) => {
-        //     console.log(resp);
-        //     //TODO setQuizCodes
-        // })
-        // .catch((ex) => {
-        //     handleErrorCode(ex.response);
-        //     console.log(ex.response)
-        //     //TODO
-        // })
+        await getAllQuizCodes().then((resp) => {
+            console.log(resp); // TODO: Remove
+            
+            if(resp.status === 200) {
+                setQuizCodes(resp.data);
+            }
+        })
+        .catch((ex) => {
+            handleErrorCode(ex.response);
+        })
     }
 
     async function fetchResults(quizCode) {
 
-        if(quizCode === "Quiz 1") {
-            setResults(mockDTO);
-        }
-        else {
-            setResults(mockDTOTwo);
-        }
+        await getResult(quizCode).then((resp) => {
+            console.log(resp); // TODO: Remove
 
-        // await getResult(quizCode).then((resp) => {
-        //     console.log(resp);
-        //     //TODO setResults
-        // })
-        // .catch((ex) => {
-        //     handleErrorCode(ex.response);
-        // })
+            if(resp.status === 200) {
+                setResults(resp.data);
+            }
+        })
+        .catch((ex) => {
+            handleErrorCode(ex.response);
+        })
     }
 
     const renderQuizCodes = () => {
@@ -115,22 +113,22 @@ const ResultsPage = () => {
 
 export default ResultsPage;
 
-let mockDTO = {
-    answersCorrect: 10, 
-    totalAnswers: 10, 
-    minutesTaken: 1, 
-    secondsTaken: 50, 
-    place: 5,
-    topTen: ["Uderax", "Woot", "Lekkerbek", "JetMan", "Koala", "MathisCement", "Boggert", "Pim Weeters", "Cheerleader", "LaHorcrux"]
-}
+// let mockDTO = {
+//     answersCorrect: 10, 
+//     totalAnswers: 10, 
+//     minutesTaken: 1, 
+//     secondsTaken: 50, 
+//     place: 5,
+//     topTen: ["Uderax", "Woot", "Lekkerbek", "JetMan", "Koala", "MathisCement", "Boggert", "Pim Weeters", "Cheerleader", "LaHorcrux"]
+// }
 
-let mockDTOTwo = {
-    answersCorrect: 8, 
-    totalAnswers: 10, 
-    minutesTaken: 5, 
-    secondsTaken: 50, 
-    place: 12,
-    topTen: ["JetMan", "Koala", "Boggert", "Pim Weeters", "Uderax", "Woot", "MathisCement",  "Lekkerbek", "LaHorcrux", "Cheerleader"]
-}
+// let mockDTOTwo = {
+//     answersCorrect: 8, 
+//     totalAnswers: 10, 
+//     minutesTaken: 5, 
+//     secondsTaken: 50, 
+//     place: 12,
+//     topTen: ["JetMan", "Koala", "Boggert", "Pim Weeters", "Uderax", "Woot", "MathisCement",  "Lekkerbek", "LaHorcrux", "Cheerleader"]
+// }
 
-let mockCodes = ["Quiz 1", "Quiz 2", "Quiz 3", "Quiz 4", "Quiz 5", "Quiz 6", "Quiz 7", "Quiz 8", "Quiz 9", "Quiz 10"]
+// let mockCodes = ["Quiz 1", "Quiz 2", "Quiz 3", "Quiz 4", "Quiz 5", "Quiz 6", "Quiz 7", "Quiz 8", "Quiz 9", "Quiz 10"]

@@ -92,8 +92,6 @@ const CreateQuizForm = () => {
     async function handleCreateQuiz() {
         const questionIds = [];
 
-        console.log(chosenQuestions)
-
         // Creating array of questionId's from chosenQuestions array
         chosenQuestions.forEach(q => {
             questionIds.push(q.questionId);
@@ -146,36 +144,13 @@ const CreateQuizForm = () => {
         // Formatting times. Slicing the last 6 characters "+01:00" for being GMT+1. Backend isn't handling this well.
         quizDTO.startTime = moment(quizDTO.startTime).format().slice(0, -6); 
         quizDTO.endTime = moment(quizDTO.endTime).format().slice(0, -6);
-
-        console.log(quizDTO)
         
         // Sending DTO to the backend.
         await createQuiz(quizDTO).then((resp) => { //b8649d16
             if(resp.status === 201) {
-                console.log(resp)
 
-                swal({
-                    title: "Created!",
-                    text: "Quiz '" + quizDTO.quizTitle + "' has been created!",
-                    icon: "success"
-                })
-                .then(() => {
-                    swal({
-                        title: "Your quiz code is: " + resp.data.quizCode,
-                        text: "To invite people to play your quiz,\nPlease share this code with them:\n" + resp.data.quizCode,
-                        icon: "success"
-                    }).then(() => {
-                        window.location.href = "/";
-                    })
-                })
-
-                // TODO: This will have a Quiz's CODE! I need to SWAL this!
-
-                // TODO: If you ever come back around to this, change quizTitle to backend's title and not the frontend one. Minor difference, but it's a difference.
-                // What? I make notes to myself referring to myself as you. Don't judge me!
-                // Also, for MVP an alert is fine but if YOU got time, then change this to a modal.
-                // Dear reader, it is now the next day and I apologise for being so weird. I was very tired.
-                // Days later: I found some time, alert has been changed to swal.
+                // Chain of SweetAlerts, handled at the bottom of this file.
+                handleSwal(quizDTO.quizTitle, resp.data.quizCode);
             }
         })
         .catch((ex) => {
@@ -348,3 +323,42 @@ const CreateQuizForm = () => {
 }
 
 export default CreateQuizForm;
+
+// Handle a chain of SweetAlerts for the successful POST of Create Quiz.
+const handleSwal = (quizTitle, quizCode) => {
+    swal({
+        title: "Created!",
+        text: "Quiz '" + quizTitle + "' has been created!",
+        icon: "success"
+    })
+    .then(() => {
+        swal({
+            title: "Your quiz code is: " + quizCode,
+            text: "To invite people to play your quiz,\nPlease share this code with them:\n" + quizCode,
+            icon: "success",
+            buttons: {
+                copy: { 
+                    text: "Copy to Clipboard", 
+                    value: "copy",
+                    closeModal: false 
+                },
+                ok: {
+                    text: "Continue",
+                    value: "ok",
+                    closeModal: false 
+                }
+            } 
+        })
+        .then((val) => {
+            switch (val) {
+                case "ok":
+                    window.location.href = "/";
+
+                case "copy":
+                    navigator.clipboard.writeText(quizCode);
+                    swal(quizCode + " copied to clipboard!")
+                    .then(() => window.location.href = "/")
+            }
+        })
+    })
+}

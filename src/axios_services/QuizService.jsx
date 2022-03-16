@@ -8,6 +8,10 @@ export function createQuiz(object) {
     return http.post("/quizzes", object);
 }
 
+export function getAllQuizCodes() {
+    return http.get("/quizzes/played")
+}
+
 /*  QuizDTO
     {
         quiz_title : "string",
