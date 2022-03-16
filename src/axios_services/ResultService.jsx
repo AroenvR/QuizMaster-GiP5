@@ -1,7 +1,7 @@
 import http from "../axios_services/Axios";
 
-export function getResult() {
-    return http.get("/results?code=" + "ABC123"); //TODO: Check this URL.
+export function getResult(quizCode) {
+    return http.get("/results?code=" + quizCode); //TODO: Check this URL.
 }
 
 // export function getTotalQuizScore(quizId) {

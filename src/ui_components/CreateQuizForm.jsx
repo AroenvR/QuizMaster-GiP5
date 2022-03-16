@@ -150,9 +150,10 @@ const CreateQuizForm = () => {
         console.log(quizDTO)
         
         // Sending DTO to the backend.
-        await createQuiz(quizDTO).then((resp) => {
+        await createQuiz(quizDTO).then((resp) => { //b8649d16
             if(resp.status === 201) {
-                
+                console.log(resp)
+
                 swal({
                     title: "Created!",
                     text: "Quiz '" + quizDTO.quizTitle + "' has been created!",
@@ -160,9 +161,11 @@ const CreateQuizForm = () => {
                 })
                 .then(() => {
                     swal({
-                        title: "Your quiz code",
-                        text: "You can invite people to play your Quiz with the following code: " + resp.data,
+                        title: "Your quiz code is: " + resp.data.quizCode,
+                        text: "To invite people to play your quiz,\nPlease share this code with them:\n" + resp.data.quizCode,
                         icon: "success"
+                    }).then(() => {
+                        window.location.href = "/";
                     })
                 })
 
@@ -316,6 +319,7 @@ const CreateQuizForm = () => {
                             max={maxDate(startTime)}
                             format="dd / MMM / yy - HH:mm"
                             onChange={(event) => setStartTime(event.value)}
+                            // TODO: See if you can remove the X button
                             required={true}
                         >
                         </DateTimePickerComponent>

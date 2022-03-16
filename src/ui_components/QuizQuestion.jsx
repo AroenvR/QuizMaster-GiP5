@@ -7,6 +7,8 @@ import FillInTheBlank from "./question_components/FillInTheBlank";
 import MultipleChoice from "./question_components/MultipleChoice"
 import TrueOrFalse from "./question_components/TrueOrFalse"
 
+import swal from 'sweetalert';
+
 import { getNext } from "../axios_services/QuestionService";
 import { handleErrorCode } from '../util/CodeHandler';
  
@@ -46,7 +48,11 @@ const QuizQuestion = () => {
             if (ex.response.status === 418) { //TEAPOT! Quiz finished. Redirect to Results. 
 
                 // Our backend and I have a running joke with 418 Teapot, we implement it once in every project we make. <3
-                window.location.href = '/results'
+                swal({
+                    title: "Finished",
+                    text: "You've finished the Quiz! \nYou can check your results from the home page.",
+                    icon: "success"
+                }).then(() => window.location.href = "/")
             }
             handleErrorCode(ex.response);
         });
