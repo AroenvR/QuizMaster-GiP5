@@ -1,25 +1,77 @@
-import logo from './logo.svg';
+import {
+  Route,
+  Routes
+} from "react-router-dom";
+
 import './App.css';
 
+import { cookieChecker } from "./axios_services/UserService";
+
+import NavigationBar from "./ui_components/NavigationBar";
+import HomePage from "./ui_components/HomePage";
+import LoginForm from "./ui_components/LoginForm";
+import SignUpForm from "./ui_components/SignUpForm";
+import JoinQuizPage from "./ui_components/JoinQuizPage";
+import CreateQuizForm from "./ui_components/CreateQuizForm";
+import QuizQuestion from "./ui_components/QuizQuestion";
+import ResultsPage from "./ui_components/ResultsPage";
+import CreateQuestionPage from "./ui_components/CreateQuestionPage";
+import Footer from "./ui_components/Footer";
+
 function App() {
+
+  // Checking which routes to allow before rendering.
+  // Checking is done in UserService.jsx
+  const checkAuthentication = () => {
+    if(cookieChecker()) {
+      return (
+        <div id="Application-Div">
+          <NavigationBar />
+  
+          <Routes>
+            <Route path="/" element={<HomePage />}></Route>
+            <Route path="/join" element={<JoinQuizPage />}></Route>
+            <Route path="/host" element={<CreateQuizForm />}></Route>
+            <Route path="/quiz" element={<QuizQuestion />}></Route>
+            <Route path="/create-question" element={<CreateQuestionPage />}></Route>
+            <Route path="/results" element={<ResultsPage />}></Route>
+            <Route path="/*" element={<HomePage />}></Route>
+          </Routes>
+  
+          <Footer /> 
+        </div>
+      );
+    }
+    return (
+      <div id="Application-Div">
+        <NavigationBar />        
+
+        <Routes>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/login" element={<LoginForm />}></Route>
+          <Route path="/sign-up" element={<SignUpForm />}></Route>
+          <Route path="/*" element={<LoginForm />}></Route>
+        </Routes>
+
+        <Footer /> 
+      </div>
+    );
+  }
+
+  // HTML from here on out. 
+  // (Joke to the other components <3)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      { 
+        checkAuthentication() 
+      }
+    </>
   );
 }
 
 export default App;
+
+// Footnote, extensions I used in Visual Studio:
+// Auto Rename Tag
+// Bracket Pair Colorizer
+// Please let me know if you know of any other useful ones.
