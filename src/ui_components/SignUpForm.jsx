@@ -3,8 +3,12 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+import swal from 'sweetalert';
+
 import { signUp } from '../axios_services/UserService';
+import { login } from '../axios_services/UserService';
 import { handleErrorCode } from '../util/CodeHandler';
+import { cookieChecker } from '../axios_services/UserService';
 
 const SignUpForm = () => {
     // Hooks!
@@ -18,9 +22,9 @@ const SignUpForm = () => {
         await signUp(email, username, password).then((resp) => {
             // User data has been sent to the backend, redirecting if succesfsful (successful, I can't type apparently).
 
-            // If user was successfully created, redirect to home.
+            // If user was successfully created, login and redirect to home.
             if (resp.status === 201) {
-                window.location.href = '/';
+                handleLogin();
             }
         })
         .catch((ex) => {
@@ -28,7 +32,26 @@ const SignUpForm = () => {
             // Exception occurred, being handled in CodeHandler.jsx
             handleErrorCode(ex.response);
         })
-    }    
+    }   
+    
+    async function handleLogin(email, password) {
+        await login(email, password).then((resp) => {
+            // Login data has been sent to the backend, handle the returns here. HTTP codes and possible objects.
+
+            if (resp.status === 200 && cookieChecker()) {
+                window.location.href = '/';
+            }
+        })
+        .catch((ex) => {
+            ex.response.status == 401 ? // 401 from Spring Security gives a different error message than Jackson.
+                swal({ 
+                    title: "Unauthorized / Forbidden",
+                    text: ex.response.data.error,
+                    icon: "warning"
+                }) :
+                handleErrorCode(ex.response);
+        })
+    }
 
     //When the submit button is clicked, data will be taken from the input hook and sent through Axios to the backend.
     async function handleSubmit(event) {
