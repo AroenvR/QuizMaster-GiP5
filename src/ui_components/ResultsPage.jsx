@@ -93,7 +93,7 @@ const ResultsPage = () => {
             <h1 className="text-center" id="Results-Title">Results:</h1>
 
             <div id="Grid-Container-Results">
-                <h1 className="C-T-1" > Choose a quiz:</h1>
+                <h2 className="C-T-1" > Choose a quiz:</h2>
                 <div id='Quiz-Code-Buttons-Div' alt="Div containing the Quiz Code buttons.">
                     { renderQuizTitles() }
                 </div>

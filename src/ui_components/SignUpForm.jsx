@@ -24,7 +24,7 @@ const SignUpForm = () => {
 
             // If user was successfully created, login and redirect to home.
             if (resp.status === 201) {
-                handleLogin();
+                handleLogin(email, password);
             }
         })
         .catch((ex) => {
@@ -34,6 +34,7 @@ const SignUpForm = () => {
         })
     }   
     
+    // Log in the user (after successful sign up)
     async function handleLogin(email, password) {
         await login(email, password).then((resp) => {
             // Login data has been sent to the backend, handle the returns here. HTTP codes and possible objects.
@@ -43,7 +44,7 @@ const SignUpForm = () => {
             }
         })
         .catch((ex) => {
-            ex.response.status == 401 ? // 401 from Spring Security gives a different error message than Jackson.
+            ex.response.status === 401 ? // 401 from Spring Security gives a different error message than Jackson.
                 swal({ 
                     title: "Unauthorized / Forbidden",
                     text: ex.response.data.error,

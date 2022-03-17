@@ -185,7 +185,7 @@ code {
   text-align: center;
 }
 
-#Create-Quiz-Form>h1, #Results-Page-Div>#Grid-Container-Results>h1.C-T-1 {
+#Create-Quiz-Form>h1, #Results-Page-Div>#Grid-Container-Results>h2.C-T-1 {
   grid-area: field1;
   align-self: center;
 }
@@ -204,7 +204,7 @@ code {
   margin: 0 0 1.5rem 0;
 }
 
-#Results-Title, #Results-Page-Div>#Grid-Container-Results>h1.C-T-1 , .Past-Quizzes, #Results-Page-Div>#Grid-Container-Results h4.C-T-2,  #Results-Page-Div>#Grid-Container-Results h4.C-T-3 {
+#Results-Title, #Results-Page-Div>#Grid-Container-Results>h2.C-T-1 , .Past-Quizzes, #Results-Page-Div>#Grid-Container-Results h4.C-T-2,  #Results-Page-Div>#Grid-Container-Results h4.C-T-3 {
   font-weight: bold;
 }
 
@@ -304,4 +304,8 @@ code {
   max-width: 50rem;
   display: flex;
   justify-content: space-between;
+}
+
+#True-or-False-Selected-P {
+  margin-bottom: 2rem;
 }
