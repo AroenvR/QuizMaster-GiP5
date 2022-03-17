@@ -108,9 +108,9 @@ function CreateTrueOrFalse() {
                 
                 <p>Select the correct answer:</p>
                 <div id="True-Or-False-Btn-Div" alt="Div containing the two 'true' and 'false' buttons.">
-                    <Button variant="success" onClick={() => setQuestionDTO({ ...questionDTO, answers: ["true"] })}>True</Button>
+                    <Button variant="primary" onClick={() => setQuestionDTO({ ...questionDTO, answers: ["true"] })}>True</Button>
 
-                    <Button variant="success" onClick={() => setQuestionDTO({ ...questionDTO, answers: ["false"] })}>False</Button>
+                    <Button variant="primary" onClick={() => setQuestionDTO({ ...questionDTO, answers: ["false"] })}>False</Button>
                 </div>
 
                 <p id="True-or-False-Selected-P">Currently selected: {questionDTO.answers}</p>
