@@ -57,7 +57,7 @@ const CreateQuestionPage = () => {
 
             <Dropdown>
 
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <Dropdown.Toggle variant="primary" id="dropdown-basic">
                     {dropdown}
                 </Dropdown.Toggle>
 

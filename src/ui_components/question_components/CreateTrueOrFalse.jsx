@@ -107,9 +107,9 @@ function CreateTrueOrFalse() {
                 </Form.Group>
                 
                 <div id="True-Or-False-Btn-Div" alt="Div containing the two 'true' and 'false' buttons.">
-                    <Button variant="success" onClick={() => setQuestionDTO({ ...questionDTO, answers: ["true"] })}>True</Button>
+                    <Button variant="primary" onClick={() => setQuestionDTO({ ...questionDTO, answers: ["true"] })}>True</Button>
 
-                    <Button variant="success" onClick={() => setQuestionDTO({ ...questionDTO, answers: ["false"] })}>False</Button>
+                    <Button variant="primary" onClick={() => setQuestionDTO({ ...questionDTO, answers: ["false"] })}>False</Button>
                 </div>
 
                 <Button 

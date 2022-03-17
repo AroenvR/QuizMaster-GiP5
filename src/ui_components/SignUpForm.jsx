@@ -24,7 +24,7 @@ const SignUpForm = () => {
 
             // If user was successfully created, login and redirect to home.
             if (resp.status === 201) {
-                handleLogin();
+                handleLogin(email, password);
             }
         })
         .catch((ex) => {
