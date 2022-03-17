@@ -290,7 +290,7 @@ const CreateQuizForm = () => {
                         <Form.Label>Quiz start time</Form.Label>
                         <DateTimePickerComponent
                             value={startTime}
-                            min={startTime}
+                            min={new Date()}
                             max={maxDate(startTime)}
                             format="dd / MMM / yy - HH:mm"
                             onChange={(event) => setStartTime(event.value)}
